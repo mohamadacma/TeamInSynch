@@ -103,9 +103,43 @@ Additionally, TeamInSynch will provide its users with a webInterface dashboard s
 ### Add Team Member Endpoint
 * Accepts a POST request to /members
 * Accepts data to create a new member with a provided name, a given ID, an email, a phone number, and location . Returns the new member with a unique Id assigned by the Team in synch service. 
-##### UML class diagram representation:
+##### UML sequence diagram representation:
 ![Alt text](image.png)
-##### UML sequence diagram respresentation: 
+
+### Update Team Member Endpoint
+* Method: PUT
+* Path: /members/:id
+* Accepts data with memberId to update member info including name,phoneNumber,location, and email.
+* Request Body: {"memberId": "string", "email": "string", "location": "string", "phoneNumber": "string"} partial Vs Full
+* Response: Returns the updated member info.
+* if the memberId is not found, we will throw memberNotFoundException
+* for security concerns, we will validate name and location do not contain invalid characters; if that's the case, we will throw an invalidAttributeValueException
+
+### Delete Team Member Endpoint
+* Accepts DELETE request to members/:id
+* Accepts memeberId to delete memeber associated with it. Return success message.
+* if the memberId is not found, we will throw memberNotFoundException
+### Get Weather Endpoint
+* Accepts GET request to /weather
+* Accepts data with location to retrieve current weather information. Returns Weather information specific to the location requested
+* if the location is not found, we will throw locationNotFoundException
+* if location has invalid date, throw invalidValueAttribution
+### Get News Endpoint
+* method: GET
+* Query Paramters: Location(optional) ?
+* path: /news
+* Response: returns a list of news headlines
+* errors: newsNotFoundException
+
+##### UML class diagram respresentation:
+ class TeamMember {
+    - String id
+    - String name
+    - String email
+    - String phoneNumber
+    - ZonedDateTime UpdatedAt
+    - Boolean isActive
+ } 
 
 
 
