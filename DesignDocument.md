@@ -131,15 +131,30 @@ Additionally, TeamInSynch will provide its users with a webInterface dashboard s
 * Response: returns a list of news headlines
 * errors: newsNotFoundException
 
-##### UML class diagram respresentation:
- class TeamMember {
-    - String id
-    - String name
-    - String email
-    - String phoneNumber
-    - ZonedDateTime UpdatedAt
-    - Boolean isActive
- } 
+## Tables
+### Members
+id // partition key, string
+
+joinDate // sort key, String
+
+name // string
+
+email // string 
+
+phone number// number
+
+location // string
+
+## Pages
+### Home page: ![Alt text](image-3.png)
+### Sign in page: ![Alt text](image-2.png)
+### Acount creation page: ![Alt text](image-4.png)
+### profile page: 
+#### eagle view: ![Alt text](image-7.png)
+#### close-up: ![Alt text](image-8.png)
+### edit Profile page: ![Alt text](image-9.png)
+
+
 
 
 
