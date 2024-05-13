@@ -2,10 +2,9 @@
 TeamInSynch
 ## Descirption
 ### Problem statement
-Remote Work is here to stay, and talent is everywhere but, there is a problem that presents itself when we're collaborating with varying degrees of georgraphical seperation. Geography is context. How do we foster a sense of connection and understading among team members distributed across different georgraphies? how do we help managers overcome the challenges of managing a georgraphically dispoersed team? 
+Remote work is here to stay, and talent is everywhere, but there is a problem that presents itself when we're collaborating with varying degrees of geographical separation. Geography is context. How do we foster a sense of connection and understanding among team members distributed across different geographies? How do we help managers overcome the challenges of managing a geographically dispersed team?
 ### Solution
-Enter TeamInSynch. 
-TeamInSynch is a dashboard for team managers designed to enhance synchronization among team memebrs, it provides the manager with enough contextual information about each memeber of their team, from local news headlines, to weather updates, to current time, so that manager can make better decisions in the worksplace and thus, increase productivity.
+Enter TeamInSynch. TeamInSynch is a dashboard for team managers designed to enhance synchronization among team members. It provides the manager with enough contextual information about each member of their team, from local news headlines to weather updates to the current time, so that managers can make better decisions in the workplace and thus increase productivity.
 
 ## User Stories
 U1. 
@@ -13,7 +12,7 @@ As a team manager, I'd like to add a team member with all their info( email, joi
 
 U2. As a team manager, I'd like to delete a team member.
 
-U3. As a team member, I'd like to sign in to my account and update my location/contact info if needed. (team member can only make updates, no deletion/new additions allowed).
+U3. As a team manager, I'd like to sign in to my account and update my location/contact info if needed and be able to edit member's info too.
 
 U4. As a team manager, I'd like to retrieve members info by joinDate, location, timeZone, and name
 
@@ -27,7 +26,7 @@ U7. As a team manager, I'd like to setup meetings that automatically takes into 
 
 U8. As a team manager, I'd like to receive notifications if there are any major local news or major weather condition where my team members are located.
 
-U9. As a team memeber, I'd like to set my availability to active or not active.
+U9. As a team manager, I'd like to set my availability to active or not active.
 
 ## Stretch Goals
 
@@ -39,26 +38,27 @@ U3. As a team manager, I'd like to view suggested appointment times that are ren
 
 ## Project Scope
 ### In scope
-* add, update, retreive, and delete a team member using information like name,email,location,joinDate,and phone number. (core functionalities)
-* retrieving and displaying weather data and local news headlines at each member's location. (the context needed so that the manager can better understand his team member's environements)
-* displaying a dashboard of active members( based on their login status) with snapshots of their real time weather info, current time, and local news headlines. (the dashboard represents the central hub for managers for a quick overview of their team and the relevant context)
+* Add, update, retrieve, and delete a team member using information like name, email, location, join date, and phone number. (Core functionalities)
+* Retrieving and displaying weather data and local news headlines at each member's location. (The context needed so that the manager can better understand his team members' environments)
+* Displaying a dashboard of active members (based on their login status) with snapshots of their real-time weather info, current time, and local news headlines. (The dashboard represents the central hub for managers for a quick overview of their team and the relevant context).
+
 
 ### Out of scope
-* Daily automatic suggestions of appointment scheduels that consider team members' timezones. ( for future iterations)
-* ability to receive notifications in the event of major local news or weather conditions. (good to have, but not key of for the MVP)
-* integration with third-party services like emails, fitness, and productivity apps.
-* ability to add  teams at different levels in the organization and subteams, so that upper managers and organizations can get relevant data and reports on teams performance metrics, productivity rates, etc. (this project is only for single-level management, multiple-level hierarchies are excluded).
+* Daily automatic suggestions of appointment schedules that consider team members' time zones. (For future iterations)
+* Ability to receive notifications in the event of major local news or weather conditions. (Good to have, but not key for the MVP)
+Integration with third-party services like emails, fitness, and productivity apps.
+* Ability to add teams at different levels in the organization and sub-teams, so that upper managers and organizations can get relevant data and reports on team performance metrics, productivity rates, etc. (This project is only for single-level management; multiple-level hierarchies are excluded.)
 
 ## Proposed Architectural Overview
 For the first iteration, we will provide the minimum lovable product (MLP) which includes adding, updating, retrieving, and deleting a team member as well as retrieving weather updates, current time, and local headline news.
 
-we will use API Gateway and Lambda to create the API endpoints( AddTeamMember, UpdateTeamMember, GetTeamMemeber, DeleteTeamMember, GetAllTeamMembers(?))
- 
-We will authenticate users using AWS cognito
+We will use API Gateway and Lambda to create the API endpoints (AddTeamMember, UpdateTeamMember, GetTeamMember, DeleteTeamMember, GetAllTeamMembers).
 
-we will store team members in DynamoDB table. As for the weather data and local news, we will retrieve them in real-time from third-party APIs, thereby avoiding storage overhead
+We will authenticate users using AWS Cognito.
 
-Additionally, TeamInSynch will provide its users with a webInterface dashboard style to give managers the ability to manage their teams. A main page providing a list of active members with the ability to hover over each and see snaphots of contextual info will also let them update their team members info and link off to pages per memeber to show detailed profile.
+We will store team members in a DynamoDB table. As for the weather data and local news, we will retrieve them in real-time from third-party APIs, thereby avoiding storage overhead.
+
+Additionally, TeamInSynch will provide its users with a web interface dashboard style to give managers the ability to manage their teams. A main page providing a list of active members with the ability to hover over each and see snapshots of contextual info will also let them update their team members' info and link off to pages per member to show detailed profiles.
 
 ## API
 ### Public Models
