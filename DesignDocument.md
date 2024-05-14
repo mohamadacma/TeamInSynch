@@ -2,9 +2,9 @@
 TeamInSynch
 ## Descirption
 ### Problem statement
-Remote work is here to stay, and talent is everywhere, but there is a problem that presents itself when we're collaborating with varying degrees of geographical separation. Geography is context. How do we foster a sense of connection and understanding among team members distributed across different geographies? How do we help managers overcome the challenges of managing a geographically dispersed team?
+Remote work is here to stay, and talent is everywhere, but there is a problem that presents itself when we're collaborating with varying degrees of geographical separation. Geography is context. How do we help managers overcome the challenges of managing a geographically dispersed team and fostering a sense of connection with their team memebers?
 ### Solution
-Enter TeamInSynch. TeamInSynch is a dashboard for team managers designed to enhance synchronization among team members. It provides the manager with enough contextual information about each member of their team, from local news headlines to weather updates to the current time, so that managers can make better decisions in the workplace and thus increase productivity.
+Enter TeamInSynch. TeamInSynch is a dashboard for team managers designed to enhance synchronization with team members. It provides the manager with enough contextual information about each member of their team, from local news headlines to weather updates to the current time, so that managers can make better decisions in the workplace and thus increase productivity.
 
 ## User Stories
 U1. 
@@ -16,7 +16,7 @@ U3. As a team manager, I'd like to sign in to my account and update my location/
 
 U4. As a team manager, I'd like to retrieve members info by joinDate, location, timeZone, and name
 
-U5.As a team manager, I'd like to see a dashboard with active memebrs on my team and the ability to hover over each memebr and see a snapshot of local context(news headlines, weather info, time).
+U5.As a team manager, I'd like to see a dashboard of my team with local context(news headlines, weather info, time).
 
 U5. As a team manager, I'd like to click on any member and see detailed info about local news headlines and local weather conditions at their location.
 
@@ -40,7 +40,7 @@ U3. As a team manager, I'd like to view suggested appointment times that are ren
 ### In scope
 * Add, update, retrieve, and delete a team member using information like name, email, location, join date, and phone number. (Core functionalities)
 * Retrieving and displaying weather data and local news headlines at each member's location. (The context needed so that the manager can better understand his team members' environments)
-* Displaying a dashboard of active members (based on their login status) with snapshots of their real-time weather info, current time, and local news headlines. (The dashboard represents the central hub for managers for a quick overview of their team and the relevant context).
+* Displaying a dashboard of the members on the manager's team, with snapshots of their real-time weather info, current time, and local news headlines. (The dashboard represents the central hub for managers for a quick overview of their team and the relevant context).
 
 
 ### Out of scope
@@ -56,9 +56,9 @@ We will use API Gateway and Lambda to create the API endpoints (AddTeamMember, U
 
 We will authenticate users using AWS Cognito.
 
-We will store team members in a DynamoDB table. As for the weather data and local news, we will retrieve them in real-time from third-party APIs, thereby avoiding storage overhead.
+We will store team members in a DynamoDB table. As for the weather data and local news, we will retrieve them in real-time from no authentication, Open third-party APIs, thereby avoiding storage overhead.
 
-Additionally, TeamInSynch will provide its users with a web interface dashboard style to give managers the ability to manage their teams. A main page providing a list of active members with the ability to hover over each and see snapshots of contextual info will also let them update their team members' info and link off to pages per member to show detailed profiles.
+TeamInSynch will provide its users with a web interface for managers to learn about their teams. The main page will provide a list of members with the ability to see snapshots of contextual info, and let them update their team members' info and link off to pages for each member to show their detailed profiles.
 
 ## API
 ### Public Models
@@ -101,6 +101,7 @@ Additionally, TeamInSynch will provide its users with a web interface dashboard 
 * List<String> URLs;
 
 ### Add Team Member Endpoint
+For each of the following API requests, we would need to authenticate the user aka manager before they're able to make the call:
 * Accepts a POST request to /members
 * Accepts data to create a new member with a provided name, a given ID, an email, a phone number, and location . Returns the new member with a unique Id assigned by the Team in synch service. 
 ##### UML sequence diagram representation:
@@ -117,16 +118,35 @@ Additionally, TeamInSynch will provide its users with a web interface dashboard 
 
 ### Delete Team Member Endpoint
 * Accepts DELETE request to members/:id
-* Accepts memeberId to delete memeber associated with it. Return success message.
+* Accepts memeberId to delete memeber associated with it. Returns success message.
 * if the memberId is not found, we will throw memberNotFoundException
 ### Get Weather Endpoint
-* Accepts GET request to /weather
-* Accepts data with location to retrieve current weather information. Returns Weather information specific to the location requested
-* if the location is not found, we will throw locationNotFoundException
-* if location has invalid date, throw invalidValueAttribution
+for the weather API, we will use openMeteo public API which requires no API key.
+
+##### Retrieving weather information using the Open-Meteo Weather Forecast API:
+
+* Accepts a request to the Open-Meteo Geocoding API with URL : https://geocoding-api.open-meteo.com/v1/search
+* Parse the JSON response from the Geocoding API to extract the latitude and longitude coordinates of the city.
+* If the city is not found by the Open-Meteo Geocoding API, throw a CityNotFoundException.
+* Construct the API URL with the obtained coordinates and other query parameters like :
+1. current_weather=true: To include current weather conditions 
+2. daily=weathercode,temperature_2m_max,temperature_2m_min: To retrieve daily weather condition and maximum/minimum temperature data.
+3. forecast_days={days}: To specify the number of forecast days (default is 7).
+4. timezone={timezone}: To specify the timezone of the city (optional). 
+
+* Accepts a GET request to the Open-Meteo Weather Forecast API endpoint with URL: https://api.open-meteo.com/v1/forecast
+
+* Parse the JSON response to extract the relevant weather information. 
+* Returns the following weather information: 
+1. Current weather condition 
+2. Current temperature
+3. Daily weather data
+ * returns data to the user
+ #### error handling
+* If the Open-Meteo Weather Forecast API returns an error or invalid response, we will throw  WeatherAPIException.
 ### Get News Endpoint
 * method: GET
-* Query Paramters: Location(optional) ?
+* Query Paramters: Location(optional)
 * path: /news
 * Response: returns a list of news headlines
 * errors: newsNotFoundException
