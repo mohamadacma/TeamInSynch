@@ -153,17 +153,24 @@ for the weather API, we will use openMeteo public API which requires no API key.
 
 ## Tables
 ### Members
-id // partition key, string
+#### primary keys
+email // partition key, string _ unique for each manager
 
-joinDate // sort key, String
+teamId // sort key, String
+#### global secondary index
+teamId // parition key, string 
+memberId // sort key, string
+#### other variables
 
 name // string
 
-email // string 
+joinDate // string
 
-phone number// number
+phone Number // Number
 
-location // string
+Location // string
+### Note 
+To restrict manager's access to other teams, we will use AWS IAM custom managed policies. the way i
 
 ## Pages
 ### Home page: ![Alt text](image-3.png)
