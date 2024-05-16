@@ -75,12 +75,9 @@ TeamInSynch will provide its users with a web interface for managers to learn ab
 
 * ZonedDateTime joinDate;
 
-* Boolean isActive;
 
 #### //WeatherModel
 * String location;
-
-* ZonedDateTime updatedAt ;
 
 * Double Temperature;
 
@@ -93,8 +90,6 @@ TeamInSynch will provide its users with a web interface for managers to learn ab
 * String location
 
 * List<String> headlines;
-
-* ZonedDateTime lastUpdated;
 
 * List<String> sources;
 
@@ -125,7 +120,7 @@ for the weather API, we will use openMeteo public API which requires no API key.
 
 ##### Retrieving weather information using the Open-Meteo Weather Forecast API:
 
-* Accepts a request to the Open-Meteo Geocoding API with URL : https://geocoding-api.open-meteo.com/v1/search
+* Accepts a GET request to the Open-Meteo Geocoding API with URL : https://geocoding-api.open-meteo.com/v1/search
 * Parse the JSON response from the Geocoding API to extract the latitude and longitude coordinates of the city.
 * If the city is not found by the Open-Meteo Geocoding API, throw a CityNotFoundException.
 * Construct the API URL with the obtained coordinates and other query parameters like :
@@ -145,11 +140,13 @@ for the weather API, we will use openMeteo public API which requires no API key.
  #### error handling
 * If the Open-Meteo Weather Forecast API returns an error or invalid response, we will throw  WeatherAPIException.
 ### Get News Endpoint
-* method: GET
-* Query Paramters: Location(optional)
-* path: /news
+* Accepts a GET request to the World News API geo coordinates with URL: https://api.worldnewsapi.com/geo-coordinates
+* Parse the JSON response from the Geocoding API to extract the latitude and longitude coordinates of the city.
+* If the city is not found by the Open-Meteo Geocoding API, throw a CityNotFoundException.
+* Accepts a GET request to search the news endpoint at the coordinates obtained from previous call with the URL: https://api.worldnewsapi.com/search-news 
+* Parse the JSON response to extract the relevant weather information. 
 * Response: returns a list of news headlines
-* errors: newsNotFoundException
+* If the World News API returns an error or invalid response, we will throw NewsAPIException.
 
 ## Tables
 ### Members
@@ -169,8 +166,8 @@ joinDate // string
 phone Number // Number
 
 Location // string
-### Note 
-To restrict manager's access to other teams, we will use AWS IAM custom managed policies. the way i
+### Note on cognito
+Cogntio will provide unique emails for each manager and 
 
 ## Pages
 ### Home page: ![Alt text](image-3.png)
