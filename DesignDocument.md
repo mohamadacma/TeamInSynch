@@ -54,16 +54,16 @@ For the first iteration, we will provide the minimum lovable product (MLP) which
 
 We will use API Gateway and Lambda to create the API endpoints (AddTeamMember, UpdateTeamMember, GetTeamMember, DeleteTeamMember, GetAllTeamMembers).
 
-We will authenticate users using AWS Cognito.
+We will authenticate users using AWS Cognito which will issue each user aka manager a unique email. We will also store the news API key using AWS secret manager.
 
-We will store team members in a DynamoDB table. As for the weather data and local news, we will retrieve them in real-time from no authentication, Open third-party APIs, thereby avoiding storage overhead.
+We will store team members in a DynamoDB table. As for the weather data and local news, we will retrieve them in real-time to avoide storage overhead.
 
 TeamInSynch will provide its users with a web interface for managers to learn about their teams. The main page will provide a list of members with the ability to see snapshots of contextual info, and let them update their team members' info and link off to pages for each member to show their detailed profiles.
 
 ## API
 ### Public Models
 #### //MemberModel
-* String Id;
+* String memberId;
 
 * String name; 
 
@@ -71,7 +71,7 @@ TeamInSynch will provide its users with a web interface for managers to learn ab
 
 * String phoneNumber;
 
-* String Location;
+* String location;
 
 * ZonedDateTime joinDate;
 
@@ -96,7 +96,6 @@ TeamInSynch will provide its users with a web interface for managers to learn ab
 * List<String> URLs;
 
 ### Add Team Member Endpoint
-For each of the following API requests, we would need to authenticate the user aka manager before they're able to make the call:
 * Accepts a POST request to /members
 * Accepts data to create a new member with a provided name, a given ID, an email, a phone number, and location . Returns the new member with a unique Id assigned by the Team in synch service. 
 ##### UML sequence diagram representation:
@@ -106,7 +105,7 @@ For each of the following API requests, we would need to authenticate the user a
 * Method: PUT
 * Path: /members/:id
 * Accepts data with memberId to update member info including name,phoneNumber,location, and email.
-* Request Body: {"memberId": "string", "email": "string", "location": "string", "phoneNumber": "string"} partial Vs Full
+* Request Body: {"memberId": "string", "email": "string", "location": "string", "phoneNumber": "string"}
 * Response: Returns the updated member info.
 * if the memberId is not found, we will throw memberNotFoundException
 * for security concerns, we will validate name and location do not contain invalid characters; if that's the case, we will throw an invalidAttributeValueException
@@ -166,8 +165,6 @@ joinDate // string
 phone Number // Number
 
 Location // string
-### Note on cognito
-Cogntio will provide unique emails for each manager and 
 
 ## Pages
 ### Home page: ![Alt text](image-3.png)
