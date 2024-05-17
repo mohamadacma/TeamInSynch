@@ -161,13 +161,17 @@ for the weather API, we will use openMeteo public API which requires no API key.
 * city // string
 
 ## Pages
-### Home page: ![Alt text](image-25.png)
+### Home page: 
+![Alt text](image-25.png)
 ### User signs in:
 ![Alt text](image-24.png)
-### add member page: ![Alt text](image-19.png)
-### member profile page: ![Alt text](image-22.png)
+### add member page: 
+![Alt text](image-19.png)
+### member profile page: 
+![Alt text](image-22.png)
 
-### edit profile page: ![Alt text](image-17.png)
+### edit profile page: 
+![Alt text](image-17.png)
 
 
 
