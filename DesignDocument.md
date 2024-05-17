@@ -149,7 +149,7 @@ for the weather API, we will use openMeteo public API which requires no API key.
 * email // partition key, string _ unique for each manager
 
 * teamName// sort key, String
-* S/memeberIds/memberIds (GUID generated Ids)
+* Set<String>/memberIds (GUID generated Ids)
 #### Members 
 * memberId // parition key, string 
 * memberName, string
@@ -171,7 +171,7 @@ for the weather API, we will use openMeteo public API which requires no API key.
 ![Alt text](image-22.png)
 
 ### edit profile page: 
-![Alt text](image-1.png)
+![Alt text](image-3.png)
 
 
 
