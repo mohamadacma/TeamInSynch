@@ -6,27 +6,24 @@ Remote work is here to stay, and talent is everywhere, but there is a problem th
 ### Solution
 Enter TeamInSynch. TeamInSynch is a dashboard for team managers designed to enhance synchronization with team members. It provides the manager with enough contextual information about each member of their team, from local news headlines to weather updates to the current time, so that managers can make better decisions in the workplace and thus increase productivity.
 
+## Problems to resolve
+* How to integrate theird party APIs to retrieve data in real time
+* How to manage access to teams 
+* How to query the table 
+
 ## User Stories
 U1. 
 As a team manager, I'd like to add a team member with all their info( email, joinDate, phoneNumber, Location.. etc).
 
 U2. As a team manager, I'd like to delete a team member.
 
-U3. As a team manager, I'd like to sign in to my account and update my location/contact info if needed and be able to edit member's info too.
+U3. As a team manager, I'd like to edit a member's info.
 
 U4. As a team manager, I'd like to retrieve members info by joinDate, location, timeZone, and name
 
 U5.As a team manager, I'd like to see a dashboard of my team with local context(news headlines, weather info, time).
 
 U5. As a team manager, I'd like to click on any member and see detailed info about local news headlines and local weather conditions at their location.
-
-U6. As a team manager, I'd like to view a constantly changing list of only the active members.
-
-U7. As a team manager, I'd like to setup meetings that automatically takes into consideration the local times of my team members
-
-U8. As a team manager, I'd like to receive notifications if there are any major local news or major weather condition where my team members are located.
-
-U9. As a team manager, I'd like to set my availability to active or not active.
 
 ## Stretch Goals
 
@@ -67,17 +64,17 @@ TeamInSynch will provide its users with a web interface for managers to learn ab
 
 * String name; 
 
-* String email;
+* String memberEmail;
 
 * String phoneNumber;
 
-* String location;
+* String city;
 
 * ZonedDateTime joinDate;
 
 
 #### //WeatherModel
-* String location;
+* String city;
 
 * Double Temperature;
 
@@ -87,7 +84,7 @@ TeamInSynch will provide its users with a web interface for managers to learn ab
 
 
 #### //NewsModel
-* String location
+* String city;
 
 * List<String> headlines;
 
@@ -148,32 +145,31 @@ for the weather API, we will use openMeteo public API which requires no API key.
 * If the World News API returns an error or invalid response, we will throw NewsAPIException.
 
 ## Tables
-### Members
-#### primary keys
-email // partition key, string _ unique for each manager
+### Teams
+* email // partition key, string _ unique for each manager
 
-teamId // sort key, String
-#### global secondary index
-teamId // parition key, string 
-memberId // sort key, string
-#### other variables
+* teamName// sort key, String
+* Set<String>memeberIds (GUID generated Ids)
+#### Members 
+* memberId // parition key, string 
+* memberName, string
 
-name // string
+* joindDate// LocalDateTime
 
-joinDate // string
+* phone Number // Number
 
-phone Number // Number
-
-Location // string
+* city // string
 
 ## Pages
-### Home page: ![Alt text](image-3.png)
-### Sign in page: ![Alt text](image-2.png)
-### Acount creation page: ![Alt text](image-4.png)
-### profile page: 
-#### eagle view: ![Alt text](image-7.png)
-#### close-up: ![Alt text](image-8.png)
-### edit Profile page: ![Alt text](image-9.png)
+### Home page: ![Alt text](image-25.png)
+### User signs in:  ![Alt text](image-15.png)
+![Alt text](image-24.png)
+### add member page: ![Alt text](image-19.png)
+### member profile page: ![Alt text](image-22.png)
+
+### edit profile page: ![Alt text](image-17.png)
+
+
 
 
 
