@@ -29,9 +29,9 @@ U5. As a team manager, I'd like to click on any member and see detailed info abo
 
 U1. As a team manager, I'd like the dashboard to display a random fact of the day about each team member's local heritage, changing daily, visible to all team members to enhance cultural awareness and team bonding.
 
-U2. As a team manager, I'd like to reassign members to different teams as the project evolve or change
+U2. As a team manager, I'd like to reassign members to different teams as the project evolve or change.
 
-U3. As a team manager, I'd like to view suggested appointment times that are rendered everyday based on memebr's timezones
+U3. As a team manager, I'd like to view suggested appointment times that are rendered everyday based on memebr's timezones.
 
 ## Project Scope
 ### In scope
@@ -149,7 +149,7 @@ for the weather API, we will use openMeteo public API which requires no API key.
 * email // partition key, string _ unique for each manager
 
 * teamName// sort key, String
-* Set<String>memeberIds (GUID generated Ids)
+* S/memeberIds/memberIds (GUID generated Ids)
 #### Members 
 * memberId // parition key, string 
 * memberName, string
@@ -166,12 +166,12 @@ for the weather API, we will use openMeteo public API which requires no API key.
 ### User signs in:
 ![Alt text](image-24.png)
 ### add member page: 
-![Alt text](image-19.png)
+![Alt text](image-2.png)
 ### member profile page: 
 ![Alt text](image-22.png)
 
 ### edit profile page: 
-![Alt text](image-17.png)
+![Alt text](image-1.png)
 
 
 
