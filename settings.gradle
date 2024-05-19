@@ -9,3 +9,4 @@
 
 rootProject.name = 'TeamInSynch'
 include('TeamInSynchServiceLambda')
+

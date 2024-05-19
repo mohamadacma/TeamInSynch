@@ -317,8 +317,8 @@ Resources:
         TeamInSynchService:
           Type: Api
           Properties:
-                Path: /search-news
-                Method: get
+            Path: /search-news
+            Method: get
 
   #-----------------------------------------------------
   # DynamoDB Configuration
@@ -381,5 +381,3 @@ Outputs:
     Description: "The URL of the deployed front-end application (COGNITO_REDIRECT_SIGNOUT)."
     Value: !Sub "https://${CloudfrontDistribution.DomainName}"
     Condition: DeployCloudFront
-
-

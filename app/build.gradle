@@ -5,7 +5,11 @@ plugins {
     id 'com.adarshr.test-logger' version '3.2.0'
 }
 
+<<<<<<< HEAD
 group 'com.nashss.se.teaminsynchservice'
+=======
+group 'com.nashss.se.musicplaylistservice'
+>>>>>>> 6ee0daf ( initialized gradle and updated files)
 version '1.0.0'
 defaultTasks 'clean', 'build'
 
