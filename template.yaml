@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Music Playlist Service
+  Team In Synch Service
 
 Parameters:
 
@@ -224,7 +224,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
+      CodeUri: app
       Handler: com.nashss.se.musicplaylistservice.lambda.GetPlaylistLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -246,7 +246,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
+      CodeUri: app
       Handler: com.nashss.se.musicplaylistservice.lambda.SearchPlaylistsLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -268,7 +268,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
+      CodeUri: app
       Handler: com.nashss.se.musicplaylistservice.lambda.GetPlaylistSongsLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -290,7 +290,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
+      CodeUri: app
       Handler: com.nashss.se.musicplaylistservice.lambda.CreatePlaylistLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -310,7 +310,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
+      CodeUri: app
       Handler: com.nashss.se.musicplaylistservice.lambda.UpdatePlaylistLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -330,7 +330,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: MusicPlaylistServiceLambda
+      CodeUri: app
       Handler: com.nashss.se.musicplaylistservice.lambda.AddSongToPlaylistLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -350,33 +350,33 @@ Resources:
   # DynamoDB Configuration
   #-----------------------------------------------------
 
-  PlaylistsTable:
+  MembersTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "id"
+        - AttributeName: "memberId"
           AttributeType: "S"
       KeySchema:
-        - AttributeName: "id"
+        - AttributeName: "memberId"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "playlists"
+      TableName: "Members"
 
-  AlbumTracksTable:
+  TeamsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "asin"
+        - AttributeName: "email"
           AttributeType: "S"
-        - AttributeName: "track_number"
-          AttributeType: "N"
+        - AttributeName: "teamName"
+          AttributeType: "S"
       KeySchema:
-        - AttributeName: "asin"
+        - AttributeName: "email"
           KeyType: "HASH"
-        - AttributeName: "track_number"
+        - AttributeName: "teamName"
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "album_tracks"
+      TableName: "Teams"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed
