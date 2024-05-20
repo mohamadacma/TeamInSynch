@@ -6,10 +6,14 @@ plugins {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 group 'com.nashss.se.teaminsynchservice'
 =======
 group 'com.nashss.se.musicplaylistservice'
 >>>>>>> 6ee0daf ( initialized gradle and updated files)
+=======
+group 'com.nashss.se.teaminsynchservice'
+>>>>>>> 440201d ( added API endpoints)
 version '1.0.0'
 defaultTasks 'clean', 'build'
 
