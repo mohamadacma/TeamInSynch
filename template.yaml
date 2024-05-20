@@ -256,7 +256,7 @@ Resources:
         Variables:
           JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
       Events:
-        MusicPlaylistService:
+        TeamInSynchService:
           Type: Api
           Properties:
             Path: /members/:id
@@ -303,12 +303,12 @@ Resources:
         WeatherGeocodingAPI:
           Type: Api
           Properties:
-            Path: https://geocoding-api.open-meteo.com/v1/search
+            Path: /v1/search
             Method: get
         WeatherForecastAPI:
           type: Api
           Properties:
-            Path: https://api.open-meteo.com/v1/forecast
+            Path: /v1/forecast
             Method: get
 
 
@@ -330,12 +330,12 @@ Resources:
         NewsGeoCodingAPI:
           Type: Api
           Properties:
-            Path: https://api.worldnewsapi.com/geo-coordinates
+            Path: /geo-coordinates
             Method: get
         NewsSearchAPI:
               Type: Api
               Properties:
-                Path: https://api.worldnewsapi.com/search-news
+                Path: /search-news
                 Method: get
 
   #-----------------------------------------------------
