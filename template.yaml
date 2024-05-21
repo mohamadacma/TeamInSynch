@@ -299,6 +299,8 @@ Resources:
           Properties:
             Path: /v1/forecast
             Method: get
+            Auth:
+              Authorizer: 'NONE'
 
   GetNewsLambda:
     Type: AWS::Serverless::Function
