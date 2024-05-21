@@ -259,7 +259,7 @@ Resources:
         TeamInSynchService:
           Type: Api
           Properties:
-            Path: /members/:id
+            Path: /member/{id}
             Method: put
             Auth:
               Authorizer: 'NONE'
@@ -281,7 +281,7 @@ Resources:
         TeamInSynchService:
           Type: Api
           Properties:
-            Path: members/:id
+            Path: members/{id}
             Method: get
             Auth:
               Authorizer: 'NONE'
