@@ -224,7 +224,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: app
+      CodeUri: TeamInSynchServiceLambda
       Handler: com.nashss.se.teaminsynchservice.lambda.AddMemberLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -239,14 +239,12 @@ Resources:
           Properties:
             Path: /members
             Method: post
-            Auth:
-              Authorizer: 'NONE'
 
   UpdateMemberLambda:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: app
+      CodeUri: TeamInSynchServiceLambda
       Handler: com.nashss.se.teaminsynchservice.lambda.UpdateMemberLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -261,14 +259,12 @@ Resources:
           Properties:
             Path: /member/{id}
             Method: put
-            Auth:
-              Authorizer: 'NONE'
 
   DeleteMemberLambda:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: app
+      CodeUri: TeamInSynchServiceLambda
       Handler: com.nashss.se.teaminsynchservice.lambda.DeleteMemberLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -281,16 +277,14 @@ Resources:
         TeamInSynchService:
           Type: Api
           Properties:
-            Path: members/{id}
+            Path: /members/{id}
             Method: get
-            Auth:
-              Authorizer: 'NONE'
 
   GetWeatherLambda:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: app
+      CodeUri: TeamInSynchServiceLambda
       Handler: com.nashss.se.teaminsynchservice.lambda.GetWeatherLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -300,23 +294,17 @@ Resources:
         Variables:
           JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
       Events:
-        WeatherGeocodingAPI:
+        TeamInSynchService:
           Type: Api
-          Properties:
-            Path: /v1/search
-            Method: get
-        WeatherForecastAPI:
-          type: Api
           Properties:
             Path: /v1/forecast
             Method: get
-
 
   GetNewsLambda:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: app
+      CodeUri: TeamInSynchServiceLambda
       Handler: com.nashss.se.teaminsynchservice.lambda.GetNewsLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -325,16 +313,10 @@ Resources:
       Environment:
         Variables:
           JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-          NEWS_API_KEY: cceb55493e7443a7b1b6539cd9ea0e06
       Events:
-        NewsGeoCodingAPI:
+        TeamInSynchService:
           Type: Api
           Properties:
-            Path: /geo-coordinates
-            Method: get
-        NewsSearchAPI:
-              Type: Api
-              Properties:
                 Path: /search-news
                 Method: get
 
@@ -399,3 +381,5 @@ Outputs:
     Description: "The URL of the deployed front-end application (COGNITO_REDIRECT_SIGNOUT)."
     Value: !Sub "https://${CloudfrontDistribution.DomainName}"
     Condition: DeployCloudFront
+
+
