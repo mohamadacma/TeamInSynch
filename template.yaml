@@ -300,7 +300,6 @@ Resources:
             Path: /v1/forecast
             Method: get
 
-
   GetNewsLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -382,3 +381,5 @@ Outputs:
     Description: "The URL of the deployed front-end application (COGNITO_REDIRECT_SIGNOUT)."
     Value: !Sub "https://${CloudfrontDistribution.DomainName}"
     Condition: DeployCloudFront
+
+
