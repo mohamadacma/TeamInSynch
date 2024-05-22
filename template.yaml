@@ -224,7 +224,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: app
+      CodeUri: TeamInSynchServiceLambda
       Handler: com.nashss.se.teaminsynchservice.lambda.AddMemberLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -246,7 +246,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: app
+      CodeUri: TeamInSynchServiceLambda
       Handler: com.nashss.se.teaminsynchservice.lambda.UpdateMemberLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -268,7 +268,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: app
+      CodeUri: TeamInSynchServiceLambda
       Handler: com.nashss.se.teaminsynchservice.lambda.DeleteMemberLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -290,7 +290,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: app
+      CodeUri: TeamInSynchServiceLambda
       Handler: com.nashss.se.teaminsynchservice.lambda.GetWeatherLambda::handleRequest
       Runtime: java11
       Architectures:
@@ -316,7 +316,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Role: !GetAtt AccessRole.Arn
-      CodeUri: app
+      CodeUri: TeamInSynchServiceLambda
       Handler: com.nashss.se.teaminsynchservice.lambda.GetNewsLambda::handleRequest
       Runtime: java11
       Architectures:
