@@ -240,7 +240,6 @@ Resources:
             Path: /members
             Method: post
 
-
   UpdateMemberLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -261,7 +260,6 @@ Resources:
             Path: /member/{id}
             Method: put
 
-
   DeleteMemberLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -281,7 +279,6 @@ Resources:
           Properties:
             Path: /members/{id}
             Method: get
-
 
   GetWeatherLambda:
     Type: AWS::Serverless::Function
@@ -384,3 +381,5 @@ Outputs:
     Description: "The URL of the deployed front-end application (COGNITO_REDIRECT_SIGNOUT)."
     Value: !Sub "https://${CloudfrontDistribution.DomainName}"
     Condition: DeployCloudFront
+
+
