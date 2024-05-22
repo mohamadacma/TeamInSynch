@@ -277,7 +277,7 @@ Resources:
         TeamInSynchService:
           Type: Api
           Properties:
-            Path: members/{id}
+            Path: /members/{id}
             Method: get
 
   GetWeatherLambda:
