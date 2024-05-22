@@ -314,9 +314,10 @@ Resources:
         Variables:
           JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
       Events:
+
         TeamInSynchService:
-          Type: Api
-          Properties:
+              Type: Api
+              Properties:
                 Path: /search-news
                 Method: get
 
