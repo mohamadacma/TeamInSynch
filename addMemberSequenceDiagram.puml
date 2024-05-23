@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+actor Client
+participant "API Gateway/Lambda" as Gateway
+participant "AddTeamMemberActivity" as Activity
+participant "memberDao" as Dao
+database "DynamoDB" as DB
+
+Client -> Gateway: HTTP POST Request
+Gateway -> Gateway : authenticateRequest
+
+Gateway -> Activity: AddTeamMemberActivity
+
+Activity -> Activity : validateInputData
+alt [if input is invalid]
+Activity -> Gateway: throw invalidAttributeValueException
+Gateway -> Client : return 400 response
+
+else [valid input]
+Activity -> Dao : persist new member
+Dao -> DB : store new member
+DB -> Dao : return 200 response
+Dao -> Activity : return new member
+Activity -> Gateway : return addTeamMember response
+Gateway -> Client : return 200 response
+
+@enduml
