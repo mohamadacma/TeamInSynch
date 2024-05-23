@@ -316,7 +316,7 @@ Resources:
       Events:
         TeamInSynchService:
           Type: Api
-          Properties:
+              Properties:
                 Path: /search-news
                 Method: get
 
