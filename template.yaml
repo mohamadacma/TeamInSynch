@@ -316,9 +316,9 @@ Resources:
       Events:
         TeamInSynchService:
           Type: Api
-              Properties:
-                Path: /search-news
-                Method: get
+          Properties:
+           Path: /search-news
+           Method: get
 
   #-----------------------------------------------------
   # DynamoDB Configuration
