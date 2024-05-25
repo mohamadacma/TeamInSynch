@@ -1,13 +1,13 @@
 # Project Title
 TeamInSynch
-## Descirption
+## Description
 ### Problem statement
 Remote work is here to stay, and talent is everywhere, but there is a problem that presents itself when we're collaborating with varying degrees of geographical separation. Geography is context. How do we help managers overcome the challenges of managing a geographically dispersed team and fostering a sense of connection with their team memebers?
 ### Solution
 Enter TeamInSynch. TeamInSynch is a dashboard for team managers designed to enhance synchronization with team members. It provides the manager with enough contextual information about each member of their team, from local news headlines to weather updates to the current time, so that managers can make better decisions in the workplace and thus increase productivity.
 
 ## Problems to resolve
-* How to integrate theird party APIs to retrieve data in real time
+* How to integrate third party APIs to retrieve data in real time
 * How to manage access to teams 
 * How to query the table 
 
@@ -70,6 +70,12 @@ TeamInSynch will provide its users with a web interface for managers to learn ab
 
 * String city;
 
+* String background;
+
+* String role
+
+* String favoriteHobby;
+
 * ZonedDateTime joinDate;
 
 
@@ -109,7 +115,7 @@ TeamInSynch will provide its users with a web interface for managers to learn ab
 
 ### Delete Team Member Endpoint
 * Accepts DELETE request to members/:id
-* Accepts memeberId to delete memeber associated with it. Returns success message.
+* Accepts memberId to delete member associated with it. Returns success message.
 * if the memberId is not found, we will throw memberNotFoundException
 ### Get Weather Endpoint
 for the weather API, we will use openMeteo public API which requires no API key.
@@ -121,7 +127,7 @@ for the weather API, we will use openMeteo public API which requires no API key.
 * If the city is not found by the Open-Meteo Geocoding API, throw a CityNotFoundException.
 * Construct the API URL with the obtained coordinates and other query parameters like :
 1. current_weather=true: To include current weather conditions 
-2. daily=weathercode,temperature_2m_max,temperature_2m_min: To retrieve daily weather condition and maximum/minimum temperature data.
+2. daily=weather-code,temperature_2m_max,temperature_2m_min: To retrieve daily weather condition and maximum/minimum temperature data.
 3. forecast_days={days}: To specify the number of forecast days (default is 7).
 4. timezone={timezone}: To specify the timezone of the city (optional). 
 
@@ -151,14 +157,16 @@ for the weather API, we will use openMeteo public API which requires no API key.
 * teamName// sort key, String
 * Set<String>/memberIds (GUID generated Ids)
 #### Members 
-* memberId // parition key, string 
+* memberId // partition key, string 
+
 * memberName, string
-
-* joindDate// LocalDateTime
-
-* phone Number // Number
-
+* joinDate// LocalDateTime
+* phoneNumber // string
 * city // string
+* role // String
+* favoriteHobby // string
+* background // string
+* memberEmail // string
 
 ## Pages
 ### Home page: 

@@ -332,11 +332,36 @@ Resources:
       AttributeDefinitions:
         - AttributeName: "memberId"
           AttributeType: "S"
+        - AttributeName: "teamName"
+          AttributeType: "S"
+        - AttributeName: "city"
+          AttributeType: "S"
+        - AttributeName: "memberName"
+          AttributeType: "S"
       KeySchema:
         - AttributeName: "memberId"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "Members"
+      GlobalSecondaryIndexes:
+        - IndexName: "TeamNameIndex"
+          KeySchema:
+            - AttributeName: "teamName"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: ALL
+        - IndexName: "CityIndex"
+          KeySchema:
+            - AttributeName: "city"
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: "MemberNameIndex"
+          KeySchema:
+            - AttributeName: "memberName"
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
 
   TeamsTable:
     Type: AWS::DynamoDB::Table
