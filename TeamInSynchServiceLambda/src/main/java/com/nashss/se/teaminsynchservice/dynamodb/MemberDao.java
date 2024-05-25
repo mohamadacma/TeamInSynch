@@ -1,8 +1,6 @@
 package com.nashss.se.teaminsynchservice.dynamodb;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.teaminsynchservice.dynamodb.models.Member;
 import com.nashss.se.teaminsynchservice.exceptions.MemberNotFoundException;
