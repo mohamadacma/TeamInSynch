@@ -2,6 +2,7 @@ package com.nashss.se.teaminsynchservice.dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.nashss.se.teaminsynchservice.dynamodb.models.Member;
+import com.nashss.se.teaminsynchservice.exceptions.MemberNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,22 @@ public class MemberDaoTest {
         Assertions.assertNotNull(result);
         verify(dynamoDBMapper).load(Member.class,memberId);
     }
-}
+
+    @Test
+    public void getMember_withInvalidMemberId_throwsMemberNotFOundException() {
+        // GIVEN
+        String invalidMemberId = "invalidId";
+
+        when(dynamoDBMapper.load(Member.class, invalidMemberId)).thenReturn(null);
+
+        // WHEN & THEN
+        Assertions.assertThrows(MemberNotFoundException.class, () -> {
+            memberDao.getMember(invalidMemberId);
+        });
+
+        verify(dynamoDBMapper).load(Member.class, invalidMemberId);
+    }
+    }
 
 
 
