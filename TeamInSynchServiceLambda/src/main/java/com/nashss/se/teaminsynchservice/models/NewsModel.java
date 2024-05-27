@@ -16,7 +16,6 @@ public class NewsModel {
         this.URLs = URLs;
     }
 
-    // Getters for each field
     public String getCity() {
         return city;
     }
@@ -33,7 +32,6 @@ public class NewsModel {
         return URLs;
     }
 
-    // Override equals method
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
