@@ -1,5 +1,6 @@
 package com.nashss.se.teaminsynchservice.dynamodb;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.teaminsynchservice.dynamodb.models.Member;
@@ -59,36 +60,51 @@ public class MemberDao {
     }
 
     /**
-     * Perform a search (via a "scan") of the member table for members matching the given city and teamName.
+     * Perform a search of the member table for members matching the given criteria.
      * Searches are CASE SENSITIVE.
-     *
-     * @param city an city of the members to find
-     * @param teamName teamName of the members to find
-     * @return a List of member objects that match the given city and teamName
+     * @param memberName memberName of the members to find.
+     * @param city       city of the members to find.
+     * @param teamName   teamName of the members to find.
+     * @return a List of member objects that match the given criteria.
      */
 
-    public List<Member> searchMembers( String city, String teamName) {
+    public List<Member> searchMembers(String memberName, String city, String teamName) {
         Map<String, AttributeValue> valueMap = new HashMap<>();
-        StringBuilder filterExpression = new StringBuilder();
+        StringBuilder keyConditionExpression = new StringBuilder();
 
-            if (city != null && !city.isEmpty()) {
-                if (filterExpression.length() > 0) filterExpression.append(" AND ");
-                valueMap.put(":city", new AttributeValue().withS(city));
-                filterExpression.append("city = :city");
-            }
-
-            if (teamName != null && !teamName.isEmpty()) {
-                if (filterExpression.length() > 0) filterExpression.append(" AND ");
-                valueMap.put(":teamName", new AttributeValue().withS(teamName));
-                filterExpression.append("teamName = :teamName");
-            }
-
-            DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
-                    .withFilterExpression(filterExpression.toString())
-                    .withExpressionAttributeValues(valueMap);
-
-            return dynamoDBMapper.scan(Member.class, scanExpression);
+        if (memberName != null && !memberName.isEmpty()) {
+            valueMap.put(":memberName", new AttributeValue().withS(memberName));
+            keyConditionExpression.append("memberName = :memberName");
         }
+
+        if (city != null && !city.isEmpty()) {
+            if (keyConditionExpression.length() > 0) keyConditionExpression.append(" AND ");
+            valueMap.put(":city", new AttributeValue().withS(city));
+            keyConditionExpression.append("city = :city");
+        }
+
+        if (teamName != null && !teamName.isEmpty()) {
+            if (keyConditionExpression.length() > 0) keyConditionExpression.append(" AND ");
+            valueMap.put(":teamName", new AttributeValue().withS(teamName));
+            keyConditionExpression.append("teamName = :teamName");
+        }
+
+        DynamoDBQueryExpression<Member> queryExpression = new DynamoDBQueryExpression<Member>()
+                .withConsistentRead(false)
+                .withKeyConditionExpression(keyConditionExpression.toString())
+                .withExpressionAttributeValues(valueMap);
+
+        // Determine which index to use based on the search criteria
+        if (memberName != null && !memberName.isEmpty()) {
+            queryExpression.withIndexName("MemberNameIndex");
+        } else if (city != null && !city.isEmpty()) {
+            queryExpression.withIndexName("CityIndex");
+        } else if (teamName != null && !teamName.isEmpty()) {
+            queryExpression.withIndexName("TeamNameIndex");
+        }
+
+        return dynamoDBMapper.query(Member.class, queryExpression);
     }
+}
 
 

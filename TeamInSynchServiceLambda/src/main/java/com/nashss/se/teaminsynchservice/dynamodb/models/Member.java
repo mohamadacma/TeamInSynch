@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Member {
     private String memberId;
     private String memberName;
-    private ZonedDateTime joinDate;
+    private String joinDate;  // store in ISO 8601 format(YYYY-MM-DDThh:mm:ss.sssZ)
     private String phoneNumber;
     private String city;
 
@@ -37,11 +37,11 @@ public class Member {
     }
 
     @DynamoDBAttribute(attributeName = "joinDate")
-    public ZonedDateTime getJoinDate() {
+    public String getJoinDate() {
         return joinDate;
     }
 
-    public void setJoinDate(ZonedDateTime joinDate) {
+    public void setJoinDate(String joinDate) {
         this.joinDate = joinDate;
     }
 
