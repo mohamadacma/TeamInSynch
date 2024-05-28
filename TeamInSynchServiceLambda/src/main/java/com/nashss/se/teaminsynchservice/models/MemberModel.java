@@ -7,19 +7,23 @@ import java.util.Objects;
 
 public class MemberModel {
     private final String memberId;
-    private final String name;
+    private final String memberName;
     private final String memberEmail;
     private final String phoneNumber;
     private final String city;
     private final ZonedDateTime joinDate;
+    private final String background;
+    private final String role;
 
-    public MemberModel(String memberId, String name, String memberEmail, String phoneNumber, String city, ZonedDateTime joinDate) {
+    public MemberModel(String memberId, String memberName, String memberEmail, String phoneNumber, String city, ZonedDateTime joinDate, String background, String role) {
         this.memberId = memberId;
-        this.name = name;
+        this.memberName = memberName;
         this.memberEmail = memberEmail;
         this.phoneNumber = phoneNumber;
         this.city = city;
         this.joinDate = joinDate;
+        this.background = background;
+        this.role = role;
     }
 
     public String getMemberId() {
@@ -27,7 +31,7 @@ public class MemberModel {
     }
 
     public String getName() {
-        return name;
+        return memberName;
     }
 
     public String getMemberEmail() {
@@ -46,6 +50,14 @@ public class MemberModel {
         return joinDate;
     }
 
+    public String getBackground() {
+        return background;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -57,33 +69,37 @@ public class MemberModel {
 
         MemberModel that = (MemberModel) o;
         return Objects.equals(memberId, that.memberId) &&
-                Objects.equals(name, that.name) &&
+                Objects.equals(memberName, that.memberName) &&
                 Objects.equals(memberEmail, that.memberEmail) &&
                 Objects.equals(phoneNumber, that.phoneNumber) &&
                 Objects.equals(city, that.city) &&
-                Objects.equals(joinDate, that.joinDate);
+                Objects.equals(joinDate, that.joinDate) &&
+                Objects.equals(background, that.background) &&
+                Objects.equals(role, that.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(memberId, name, memberEmail, phoneNumber, city, joinDate);
+        return Objects.hash(memberId, memberName, memberEmail, phoneNumber, city, joinDate, background, role);
     }
 
     public static class Builder {
         private String memberId;
-        private String name;
+        private String memberName;
         private String memberEmail;
         private String phoneNumber;
         private String city;
         private ZonedDateTime joinDate;
+        private String background;
+        private String role;
 
         public Builder withMemberId(String memberId) {
             this.memberId = memberId;
             return this;
         }
 
-        public Builder withName(String name) {
-            this.name = name;
+        public Builder withName(String memberName) {
+            this.memberName = memberName;
             return this;
         }
 
@@ -107,8 +123,18 @@ public class MemberModel {
             return this;
         }
 
+        public Builder withBackground(String background) {
+            this.background = background;
+            return this;
+        }
+
+        public Builder withRole(String role) {
+            this.role = role;
+            return this;
+        }
+
         public MemberModel build() {
-            return new MemberModel(memberId, memberEmail, name, city, phoneNumber, joinDate);
+            return new MemberModel(memberId, memberName, memberEmail, phoneNumber, city, joinDate, background, role);
         }
     }
 }
