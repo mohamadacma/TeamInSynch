@@ -2,8 +2,12 @@ package com.nashss.se.teaminsynchservice.activity;
 
 import com.nashss.se.teaminsynchservice.activity.requests.AddMemberRequest;
 import com.nashss.se.teaminsynchservice.activity.results.AddMemberResult;
+import com.nashss.se.teaminsynchservice.converters.ModelConverter;
 import com.nashss.se.teaminsynchservice.dynamodb.MemberDao;
+import com.nashss.se.teaminsynchservice.dynamodb.models.Member;
+import com.nashss.se.teaminsynchservice.exceptions.InvalidAttributeValueException;
 import com.nashss.se.teaminsynchservice.models.MemberModel;
+import com.nashss.se.teaminsynchservice.utils.TeamInSynchServiceUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -44,7 +48,58 @@ public class AddMemberActivity {
      */
     public AddMemberResult handleRequest(final AddMemberRequest addMemberRequest) {
         log.info("Received AddMemberRequest {}", addMemberRequest);
-        if(!TeamInSynchServiceUtils.)
 
+        if (!TeamInSynchServiceUtils.isValidString(addMemberRequest.getMemberName())) {
+            throw new InvalidAttributeValueException("Member name [" + addMemberRequest.getMemberName() +
+                    "] contains illegal characters");
+        }
+
+        if (!TeamInSynchServiceUtils.isValidString(addMemberRequest.getMemberEmail())) {
+            throw new InvalidAttributeValueException("Member email [" + addMemberRequest.getMemberEmail() +
+                    "] contains illegal characters");
+        }
+
+        if (!TeamInSynchServiceUtils.isValidString(addMemberRequest.getPhoneNumber())) {
+            throw new InvalidAttributeValueException("Phone number [" + addMemberRequest.getPhoneNumber() +
+                    "] contains illegal characters");
+        }
+
+        if (!TeamInSynchServiceUtils.isValidString(addMemberRequest.getCity())) {
+            throw new InvalidAttributeValueException("City [" + addMemberRequest.getCity() +
+                    "] contains illegal characters");
+        }
+
+        if (!TeamInSynchServiceUtils.isValidString(addMemberRequest.getBackground())) {
+            throw new InvalidAttributeValueException("Background [" + addMemberRequest.getBackground() +
+                    "] contains illegal characters");
+        }
+
+        if (!TeamInSynchServiceUtils.isValidString(addMemberRequest.getRole())) {
+            throw new InvalidAttributeValueException("Role [" + addMemberRequest.getRole() +
+                    "] contains illegal characters");
+        }
+
+        if (!TeamInSynchServiceUtils.isValidIsoDate(addMemberRequest.getJoinDate())) {
+            throw new InvalidAttributeValueException("Join date [" + addMemberRequest.getJoinDate() +
+                    "] is not in ISO 8601 format. Please use the format YYYY-MM-DDThh:mm:ss.sssZ");
+        }
+
+        Member newMember = new Member();
+        newMember.setMemberId(TeamInSynchServiceUtils.generateMemberId());
+        newMember.setMemberName(addMemberRequest.getMemberName());
+        newMember.setMemberEmail(addMemberRequest.getMemberEmail());
+        newMember.setPhoneNumber(addMemberRequest.getPhoneNumber());
+        newMember.setCity(addMemberRequest.getCity());
+        newMember.setJoinDate(addMemberRequest.getJoinDate()); // Store as string for now
+        newMember.setBackground(addMemberRequest.getBackground());
+        newMember.setRole(addMemberRequest.getRole());
+
+        memberDao.saveMember(newMember);
+
+        MemberModel memberModel = new ModelConverter().toMemberModel(newMember);
+        return AddMemberResult.builder()
+                .withMember(memberModel)
+                .build();
     }
 }
+

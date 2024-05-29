@@ -11,11 +11,11 @@ public class MemberModel {
     private final String memberEmail;
     private final String phoneNumber;
     private final String city;
-    private final ZonedDateTime joinDate;
+    private final String joinDate;
     private final String background;
     private final String role;
 
-    public MemberModel(String memberId, String memberName, String memberEmail, String phoneNumber, String city, ZonedDateTime joinDate, String background, String role) {
+    public MemberModel(String memberId, String memberName, String memberEmail, String phoneNumber, String city, String joinDate, String background, String role) {
         this.memberId = memberId;
         this.memberName = memberName;
         this.memberEmail = memberEmail;
@@ -46,7 +46,7 @@ public class MemberModel {
         return city;
     }
 
-    public ZonedDateTime getJoinDate() {
+    public String getJoinDate() {
         return joinDate;
     }
 
@@ -83,13 +83,17 @@ public class MemberModel {
         return Objects.hash(memberId, memberName, memberEmail, phoneNumber, city, joinDate, background, role);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder {
         private String memberId;
         private String memberName;
         private String memberEmail;
         private String phoneNumber;
         private String city;
-        private ZonedDateTime joinDate;
+        private String joinDate;
         private String background;
         private String role;
 
@@ -98,7 +102,7 @@ public class MemberModel {
             return this;
         }
 
-        public Builder withName(String memberName) {
+        public Builder withMemberName(String memberName) {
             this.memberName = memberName;
             return this;
         }
@@ -118,7 +122,7 @@ public class MemberModel {
             return this;
         }
 
-        public Builder withJoinDate(ZonedDateTime joinDate) {
+        public Builder withJoinDate(String joinDate) {
             this.joinDate = joinDate;
             return this;
         }

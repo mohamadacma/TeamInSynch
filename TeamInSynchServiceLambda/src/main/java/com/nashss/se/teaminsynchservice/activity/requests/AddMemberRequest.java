@@ -13,8 +13,9 @@ public class AddMemberRequest {
     private final String background;
     private final String role;
     private final String memberEmail;
+    private final String managerEmail;
 
-    private AddMemberRequest(String memberId, String memberName, String joinDate, String phoneNumber, String city, String background, String role, String memberEmail) {
+    private AddMemberRequest(String memberId, String memberName, String joinDate, String phoneNumber, String city, String background, String role, String memberEmail, String managerEmail) {
         this.memberId = memberId;
         this.memberName = memberName;
         this.joinDate = joinDate;
@@ -23,6 +24,7 @@ public class AddMemberRequest {
         this.background = background;
         this.role = role;
         this.memberEmail = memberEmail;
+        this.managerEmail = managerEmail;
     }
 
     public String getMemberId() {
@@ -68,6 +70,7 @@ public class AddMemberRequest {
                 ", background='" + background + '\'' +
                 ", role='" + role + '\'' +
                 ", memberEmail='" + memberEmail + '\'' +
+                ", managerEmail='" + managerEmail + '\'' +
                 '}';
     }
 
@@ -85,6 +88,7 @@ public class AddMemberRequest {
         private String background;
         private String role;
         private String memberEmail;
+        private String managerEmail;
 
         public Builder withMemberId(String memberId) {
             this.memberId = memberId;
@@ -126,8 +130,14 @@ public class AddMemberRequest {
             return this;
         }
 
+        public Builder withManagerEmail(String managerEmail) {
+            this.managerEmail = managerEmail;
+            return this;
+        }
+
+
         public AddMemberRequest build() {
-            return new AddMemberRequest(memberId, memberName, joinDate, phoneNumber, city, background, role, memberEmail);
+            return new AddMemberRequest(memberId, memberName, joinDate, phoneNumber, city, background, role, memberEmail, managerEmail);
         }
     }
 }

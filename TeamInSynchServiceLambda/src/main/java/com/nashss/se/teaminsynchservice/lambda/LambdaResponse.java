@@ -1,4 +1,4 @@
-package com.nashss.se.teaminsynchservice.Lambda;
+package com.nashss.se.teaminsynchservice.lambda;
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
