@@ -17,7 +17,6 @@ public class Member {
     private String joinDate;  // store in ISO 8601 format(YYYY-MM-DDThh:mm:ss.sssZ)
     private String phoneNumber;
     private String city;
-
     private String background;
     private String role;
     private String memberEmail;
@@ -81,7 +80,9 @@ public class Member {
         return background;
     }
 
-    public void setBackground(String background)
+    public void setBackground(String background) {
+        this.background = background;
+    }
 
     @DynamoDBAttribute(attributeName = "memberEmail")
     public String getMemberEmail() {

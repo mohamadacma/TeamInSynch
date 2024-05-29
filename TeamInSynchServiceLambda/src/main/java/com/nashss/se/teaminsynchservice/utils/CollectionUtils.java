@@ -1,8 +1,8 @@
-package main.java.com.nashss.se.teaminsynchservice.utils;
+package com.nashss.se.teaminsynchservice.utils;
 
 import java.util.*;
 
-import static main.java.com.nashss.se.teaminsynchservice.utils.NullUtils.ifNotNull;
+import static com.nashss.se.teaminsynchservice.utils.NullUtils.ifNotNull;
 
 /**
  * Various helpful utilities for converting collections.

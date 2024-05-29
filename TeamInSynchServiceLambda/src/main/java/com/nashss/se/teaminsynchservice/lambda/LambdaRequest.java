@@ -1,4 +1,4 @@
-package main.java.com.nashss.se.teaminsynchservice.Lambda;
+package com.nashss.se.teaminsynchservice.lambda;
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static main.java.com.nashss.se.teaminsynchservice.utils.NullUtils.ifNull;
+import static com.nashss.se.teaminsynchservice.utils.NullUtils.ifNull;
 
 /**
  * Represents a generic "APIGateway" request made to a lambda function.

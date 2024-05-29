@@ -1,4 +1,4 @@
-package main.java.com.nashss.se.teaminsynchservice.utils;
+package com.nashss.se.teaminsynchservice.utils;
 
 import java.util.function.Supplier;
 
