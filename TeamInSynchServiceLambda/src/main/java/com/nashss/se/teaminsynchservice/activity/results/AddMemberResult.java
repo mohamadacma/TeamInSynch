@@ -3,7 +3,7 @@ package com.nashss.se.teaminsynchservice.activity.results;
 import com.nashss.se.teaminsynchservice.models.MemberModel;
 
 public class AddMemberResult {
-    private MemberModel member;
+    private final MemberModel member;
 
     private AddMemberResult(MemberModel member) {
         this.member = member;
