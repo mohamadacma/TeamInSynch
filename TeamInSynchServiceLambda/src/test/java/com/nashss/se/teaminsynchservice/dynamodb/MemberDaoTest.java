@@ -33,7 +33,7 @@ public class MemberDaoTest {
         member.setMemberId(memberId);
         when(dynamoDBMapper.load(Member.class,memberId)).thenReturn(member);
         //WHEN
-        Member result = memberDao.getMember(memberId);
+        Member result = memberDao.getMemberById(memberId);
         //THEN
         Assertions.assertNotNull(result);
         verify(dynamoDBMapper).load(Member.class,memberId);
@@ -48,7 +48,7 @@ public class MemberDaoTest {
 
         // WHEN & THEN
         Assertions.assertThrows(MemberNotFoundException.class, () -> {
-            memberDao.getMember(invalidMemberId);
+            memberDao.getMemberById(invalidMemberId);
         });
 
         verify(dynamoDBMapper).load(Member.class, invalidMemberId);

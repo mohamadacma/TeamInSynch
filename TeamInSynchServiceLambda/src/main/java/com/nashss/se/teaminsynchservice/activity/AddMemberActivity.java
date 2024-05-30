@@ -90,7 +90,7 @@ public class AddMemberActivity {
         newMember.setMemberEmail(addMemberRequest.getMemberEmail());
         newMember.setPhoneNumber(addMemberRequest.getPhoneNumber());
         newMember.setCity(addMemberRequest.getCity());
-        newMember.setJoinDate(addMemberRequest.getJoinDate()); // Store as string for now
+        newMember.setJoinDate(addMemberRequest.getJoinDate());
         newMember.setBackground(addMemberRequest.getBackground());
         newMember.setRole(addMemberRequest.getRole());
 
