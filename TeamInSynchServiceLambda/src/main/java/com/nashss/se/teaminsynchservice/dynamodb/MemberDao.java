@@ -36,7 +36,7 @@ public class MemberDao {
      * @param memberId The member to look up
      * @return The corresponding Member if found
      */
-    public Member getMember(String memberId) {
+    public Member getMemberById(String memberId) {
         Member member = dynamoDBMapper.load(Member.class, memberId);
         if (null == member) {
             throw new MemberNotFoundException(
@@ -64,7 +64,7 @@ public class MemberDao {
      * @param memberId The memberId to look up
      */
     public void deleteMember(String memberId) {
-        Member member = getMember(memberId);
+        Member member = getMemberById(memberId);
         if (member != null) {
             dynamoDBMapper.delete(member);
         } else {
@@ -106,7 +106,7 @@ public class MemberDao {
     public Set<Member> getMembersByIds(Set<String> memberIds) {
         Set<Member> members = new HashSet<>();
         for (String memberId : memberIds) {
-            members.add(getMember(memberId));
+            members.add(getMemberById(memberId));
         }
         return members;
     }
