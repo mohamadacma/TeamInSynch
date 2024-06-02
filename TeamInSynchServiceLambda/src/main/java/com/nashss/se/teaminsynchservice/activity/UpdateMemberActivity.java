@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import javax.inject.Inject;
 
 /**
- * Implementation of the UpdateMemberActivity for the TeamInSynchService's AddMember API.
+ * Implementation of the UpdateMemberActivity for the TeamInSynchService's UpdateMember API.
  *
  * This API allows the customer to update their saved member's information.
  */
@@ -56,50 +56,41 @@ public class UpdateMemberActivity {
             throw new MemberNotFoundException("Member not found with id: " + updateMemberRequest.getMemberId());
         }
 
-        // Validate and update fields
-        if (updateMemberRequest.getMemberName() != null) {
+        // Validate fields
             if (!TeamInSynchServiceUtils.isValidString(updateMemberRequest.getMemberName())) {
                 throw new InvalidAttributeValueException("Member name [" + updateMemberRequest.getMemberName() +
                         "] contains illegal characters");
-            }
-            member.setMemberName(updateMemberRequest.getMemberName());
         }
-            if (updateMemberRequest.getPhoneNumber() != null) {
                 if (!TeamInSynchServiceUtils.isValidString(updateMemberRequest.getPhoneNumber())) {
                     throw new InvalidAttributeValueException("Phone number [" + updateMemberRequest.getPhoneNumber() +
                             "] contains illegal characters");
                 }
-                member.setPhoneNumber(updateMemberRequest.getPhoneNumber());
-            }
-                if (updateMemberRequest.getCity() != null) {
                     if (!TeamInSynchServiceUtils.isValidString(updateMemberRequest.getCity())) {
                         throw new InvalidAttributeValueException("City [" + updateMemberRequest.getCity() +
                                 "] contains illegal characters");
                     }
-                    member.setCity(updateMemberRequest.getCity());
-                }
-                if (updateMemberRequest.getBackground() != null) {
                     if (!TeamInSynchServiceUtils.isValidString(updateMemberRequest.getBackground())) {
                         throw new InvalidAttributeValueException("Background [" + updateMemberRequest.getBackground() +
                                 "] contains illegal characters");
                     }
-                    member.setBackground(updateMemberRequest.getBackground());
-                }
-                if (updateMemberRequest.getRole() != null) {
+
                     if (!TeamInSynchServiceUtils.isValidString(updateMemberRequest.getRole())) {
                         throw new InvalidAttributeValueException("Role [" + updateMemberRequest.getRole() +
                                 "] contains illegal characters");
                     }
-                    member.setRole(updateMemberRequest.getRole());
-                }
-                if (updateMemberRequest.getMemberEmail() != null) {
+
                     if (!TeamInSynchServiceUtils.isValidString(updateMemberRequest.getMemberEmail())) {
                         throw new InvalidAttributeValueException("Email [" + updateMemberRequest.getMemberEmail() +
                                 "] contains illegal characters");
                     }
+                    member.setMemberName(updateMemberRequest.getMemberName());
+                    member.setPhoneNumber(updateMemberRequest.getPhoneNumber());
+                    member.setCity(updateMemberRequest.getCity());
+                    member.setBackground(updateMemberRequest.getBackground());
+                    member.setRole(updateMemberRequest.getRole());
                     member.setMemberEmail(updateMemberRequest.getMemberEmail());
-                }
                     memberDao.saveMember(member);
+
                     return UpdateMemberResult.builder()
                             .withMember(new ModelConverter().toMemberModel(member))
                             .build();
