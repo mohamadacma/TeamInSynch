@@ -135,7 +135,6 @@ public class AddMemberRequest {
             return this;
         }
 
-
         public AddMemberRequest build() {
             return new AddMemberRequest(memberId, memberName, joinDate, phoneNumber, city, background, role, memberEmail, managerEmail);
         }
