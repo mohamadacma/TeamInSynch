@@ -8,14 +8,17 @@ public class NewsModel {
     private final List<String> headlines;
     private final List<String> sources;
     private final List<String> URLs;
+    private final List<String> images;
+    private final List<String> publishDates;
 
-    private NewsModel(String city, List<String> headlines, List<String> sources, List<String> URLs) {
+    private NewsModel(String city, List<String> headlines, List<String> sources, List<String> URLs, List<String> images, List<String> publishDates) {
         this.city = city;
         this.headlines = headlines;
         this.sources = sources;
         this.URLs = URLs;
+        this.images = images;
+        this.publishDates = publishDates;
     }
-
     public String getCity() {
         return city;
     }
@@ -31,6 +34,9 @@ public class NewsModel {
     public List<String> getURLs() {
         return URLs;
     }
+    public List<String> getImages() { return images;}
+
+    public List<String> getPublishDates() { return publishDates; }
 
     @Override
     public boolean equals(Object o) {
@@ -40,12 +46,14 @@ public class NewsModel {
         return Objects.equals(city, newsModel.city) &&
                 Objects.equals(headlines, newsModel.headlines) &&
                 Objects.equals(sources, newsModel.sources) &&
-                Objects.equals(URLs, newsModel.URLs);
+                Objects.equals(URLs, newsModel.URLs) &&
+                Objects.equals(images, newsModel.images) &&
+                Objects.equals(publishDates, newsModel.publishDates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(city, headlines, sources, URLs);
+        return Objects.hash(city, headlines, sources, URLs,images,publishDates);
     }
 
     public static class Builder {
@@ -53,6 +61,8 @@ public class NewsModel {
         private List<String> headlines;
         private List<String> sources;
         private List<String> URLs;
+        private List<String> images;
+        private List<String> publishDates;
 
         public Builder withCity(String city) {
             this.city = city;
@@ -73,9 +83,18 @@ public class NewsModel {
             this.URLs = URLs;
             return this;
         }
+        public Builder withImages(List<String> images) {
+            this.images = images;
+            return this;
+        }
+
+        public Builder withPublishDates(List<String> publishDates) {
+            this.publishDates = publishDates;
+            return this;
+        }
 
         public NewsModel build() {
-            return new NewsModel(city, headlines, sources, URLs);
+            return new NewsModel(city, headlines, sources, URLs,images,publishDates);
         }
     }
 }

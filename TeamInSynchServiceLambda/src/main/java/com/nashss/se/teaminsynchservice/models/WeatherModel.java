@@ -1,34 +1,46 @@
 package com.nashss.se.teaminsynchservice.models;
 
+import java.util.List;
 import java.util.Objects;
 
 public class WeatherModel {
-    private final String city;
-    private final Double temperature;
-    private final String weatherCondition;
-    private final String weatherDescription;
+    private final Double latitude;
+    private final Double longitude;
+    private final List<String> times;
+    private final List<String> weatherDescriptions;
+    private final List<Double> maxTemperatures;
+    private final List<Double> minTemperatures;
 
-    private WeatherModel(String city, Double temperature, String weatherCondition, String weatherDescription) {
-        this.city = city;
-        this.temperature = temperature;
-        this.weatherCondition = weatherCondition;
-        this.weatherDescription = weatherDescription;
-}
-
-    public String getCity() {
-        return city;
+    private WeatherModel(Builder builder) {
+        this.latitude = builder.latitude;
+        this.longitude = builder.longitude;
+        this.times = builder.times;
+        this.weatherDescriptions = builder.weatherDescriptions;
+        this.maxTemperatures = builder.maxTemperatures;
+        this.minTemperatures = builder.minTemperatures;
+    }
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public Double getTemperature() {
-        return temperature;
+    public Double getLongitude() {
+        return longitude;
     }
 
-    public String getWeatherCondition() {
-        return weatherCondition;
+    public List<String> getTimes() {
+        return times;
     }
 
-    public String getWeatherDescription() {
-        return weatherDescription;
+    public List<String> getWeatherDescriptions() {
+        return weatherDescriptions;
+    }
+
+    public List<Double> getMaxTemperatures() {
+        return maxTemperatures;
+    }
+
+    public List<Double> getMinTemperatures() {
+        return minTemperatures;
     }
 
     @Override
@@ -36,47 +48,59 @@ public class WeatherModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         WeatherModel that = (WeatherModel) o;
-        return Objects.equals(city, that.city) &&
-                Objects.equals(temperature, that.temperature) &&
-                Objects.equals(weatherCondition, that.weatherCondition) &&
-                Objects.equals(weatherDescription, that.weatherDescription);
+        return Objects.equals(latitude, that.latitude) &&
+                Objects.equals(longitude, that.longitude) &&
+                Objects.equals(times, that.times) &&
+                Objects.equals(weatherDescriptions, that.weatherDescriptions) &&
+                Objects.equals(maxTemperatures, that.maxTemperatures) &&
+                Objects.equals(minTemperatures, that.minTemperatures);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(city, temperature, weatherCondition, weatherDescription);
+        return Objects.hash(latitude, longitude, times, weatherDescriptions, maxTemperatures, minTemperatures);
     }
 
     public static class Builder {
-        private String city;
-        private Double temperature;
-        private String weatherCondition;
-        private String weatherDescription;
+        private Double latitude;
+        private Double longitude;
+        private List<String> times;
+        private List<String> weatherDescriptions;
+        private List<Double> maxTemperatures;
+        private List<Double> minTemperatures;
 
-        public Builder withCity(String city) {
-            this.city = city;
+        public Builder withLatitude(Double latitude) {
+            this.latitude = latitude;
             return this;
         }
 
-        public Builder withTemperature(Double temperature) {
-            this.temperature = temperature;
+        public Builder withLongitude(Double longitude) {
+            this.longitude = longitude;
             return this;
         }
 
-        public Builder withWeatherCondition(String weatherCondition) {
-            this.weatherCondition = weatherCondition;
+        public Builder withTimes(List<String> times) {
+            this.times = times;
             return this;
         }
 
-        public Builder withWeatherDescription(String weatherDescription) {
-            this.weatherDescription = weatherDescription;
+        public Builder withWeatherDescriptions(List<String> weatherDescriptions) {
+            this.weatherDescriptions = weatherDescriptions;
+            return this;
+        }
+
+        public Builder withMaxTemperatures(List<Double> maxTemperatures) {
+            this.maxTemperatures = maxTemperatures;
+            return this;
+        }
+
+        public Builder withMinTemperatures(List<Double> minTemperatures) {
+            this.minTemperatures = minTemperatures;
             return this;
         }
 
         public WeatherModel build() {
-            return new WeatherModel(city, temperature, weatherCondition, weatherDescription);
+            return new WeatherModel(this);
         }
     }
 }
-
-

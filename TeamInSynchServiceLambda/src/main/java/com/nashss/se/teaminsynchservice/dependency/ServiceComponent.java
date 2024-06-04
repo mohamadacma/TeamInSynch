@@ -2,6 +2,7 @@ package com.nashss.se.teaminsynchservice.dependency;
 
 import com.nashss.se.teaminsynchservice.activity.AddMemberActivity;
 import com.nashss.se.teaminsynchservice.activity.DeleteMemberActivity;
+import com.nashss.se.teaminsynchservice.activity.SearchMembersActivity;
 import com.nashss.se.teaminsynchservice.activity.UpdateMemberActivity;
 import dagger.Component;
 
@@ -34,5 +35,10 @@ public interface ServiceComponent {
      * @return DeleteMemberActivity
      */
     DeleteMemberActivity provideDeleteMemberActivity();
+    /**
+     * Provides the relevant activity.
+     *
+     * @return SearchMembersActivity
+     */
+    SearchMembersActivity provideSearchMembersActivity();
 }
-
