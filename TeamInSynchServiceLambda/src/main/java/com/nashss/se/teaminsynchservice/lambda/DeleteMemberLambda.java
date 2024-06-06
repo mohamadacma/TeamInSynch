@@ -16,6 +16,7 @@ implements RequestHandler<AuthenticatedLambdaRequest<DeleteMemberRequest>, Lambd
                     return input.fromUserClaims(claims ->
                             DeleteMemberRequest.builder()
                                     .withMemberId(memberId)
+                                    .withManagerEmail(claims.get("email"))
                                     .build());
                 },
                 (request, serviceComponent) ->

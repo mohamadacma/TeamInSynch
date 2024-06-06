@@ -42,4 +42,3 @@ public interface ServiceComponent {
      */
     SearchMembersActivity provideSearchMembersActivity();
 }
-
