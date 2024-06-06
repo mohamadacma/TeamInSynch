@@ -4,7 +4,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -20,6 +19,7 @@ public class Member {
     private String background;
     private String role;
     private String memberEmail;
+    private String teamName;
 
     @DynamoDBHashKey(attributeName = "memberId")
     public String getMemberId() {
@@ -93,7 +93,14 @@ public class Member {
         this.memberEmail = memberEmail;
     }
 
+    @DynamoDBAttribute(attributeName = "teamName")
+    public String getTeamName() {
+        return teamName;
+    }
 
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -111,25 +118,27 @@ public class Member {
                 Objects.equals(city, that.city) &&
                 Objects.equals(role, that.role) &&
                 Objects.equals(background, that.background) &&
-                Objects.equals(memberEmail, that.memberEmail);
+                Objects.equals(memberEmail, that.memberEmail) &&
+                Objects.equals(teamName, that.teamName);  // Add this line
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(memberId, memberName, joinDate, phoneNumber, city, role, background, memberEmail); }
-
-        @Override
-        public String toString() {
-            return "Member{" +
-                    "memberId='" + memberId + '\'' +
-                    ", memberName='" + memberName + '\'' +
-                    ", joinDate=" + joinDate +
-                    ", phoneNumber='" + phoneNumber + '\'' +
-                    ", city='" + city + '\'' +
-                    ", role='" + role + '\'' +
-                    ", background='" + background + '\'' +
-                    ", memberEmail='" + memberEmail + '\'' +
-                    '}';
-        }
+        return Objects.hash(memberId, memberName, joinDate, phoneNumber, city, role, background, memberEmail, teamName);
     }
 
+    @Override
+    public String toString() {
+        return "Member{" +
+                "memberId='" + memberId + '\'' +
+                ", memberName='" + memberName + '\'' +
+                ", joinDate=" + joinDate +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", city='" + city + '\'' +
+                ", role='" + role + '\'' +
+                ", background='" + background + '\'' +
+                ", memberEmail='" + memberEmail + '\'' +
+                ", teamName='" + teamName + '\'' +  // Add this line
+                '}';
+    }
+}

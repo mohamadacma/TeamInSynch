@@ -12,6 +12,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Implementation of the AddMemberActivity for the TeamInSynchService's AddMember API.
@@ -48,6 +52,8 @@ public class AddMemberActivity {
      */
     public AddMemberResult handleRequest(final AddMemberRequest addMemberRequest) {
         log.info("Received AddMemberRequest {}", addMemberRequest);
+        // Parse join date to ISO 8601 format
+        String isoJoinDate = formatToIsoDate(addMemberRequest.getJoinDate());
 
         if (!TeamInSynchServiceUtils.isValidString(addMemberRequest.getMemberName())) {
             throw new InvalidAttributeValueException("Member name [" + addMemberRequest.getMemberName() +
@@ -79,27 +85,38 @@ public class AddMemberActivity {
                     "] contains illegal characters");
         }
 
-        if (!TeamInSynchServiceUtils.isValidIsoDate(addMemberRequest.getJoinDate())) {
-            throw new InvalidAttributeValueException("Join date [" + addMemberRequest.getJoinDate() +
-                    "] is not in ISO 8601 format. Please use the format YYYY-MM-DDThh:mm:ss.sssZ");
+        if (!TeamInSynchServiceUtils.isValidString(addMemberRequest.getTeamName())) {
+            throw new InvalidAttributeValueException("teamName [" + addMemberRequest.getTeamName() +
+                    "] contains illegal characters");
         }
 
-        Member newMember = new Member();
-        newMember.setMemberId(TeamInSynchServiceUtils.generateMemberId());
-        newMember.setMemberName(addMemberRequest.getMemberName());
-        newMember.setMemberEmail(addMemberRequest.getMemberEmail());
-        newMember.setPhoneNumber(addMemberRequest.getPhoneNumber());
-        newMember.setCity(addMemberRequest.getCity());
-        newMember.setJoinDate(addMemberRequest.getJoinDate());
-        newMember.setBackground(addMemberRequest.getBackground());
-        newMember.setRole(addMemberRequest.getRole());
+            Member newMember = new Member();
+            newMember.setMemberId(TeamInSynchServiceUtils.generateMemberId());
+            newMember.setMemberName(addMemberRequest.getMemberName());
+            newMember.setMemberEmail(addMemberRequest.getMemberEmail());
+            newMember.setPhoneNumber(addMemberRequest.getPhoneNumber());
+            newMember.setCity(addMemberRequest.getCity());
+            newMember.setJoinDate(isoJoinDate);
+            newMember.setBackground(addMemberRequest.getBackground());
+            newMember.setRole(addMemberRequest.getRole());
+            newMember.setTeamName(addMemberRequest.getTeamName());
 
-        memberDao.saveMember(newMember);
+            memberDao.saveMember(newMember);
 
-        MemberModel memberModel = new ModelConverter().toMemberModel(newMember);
-        return AddMemberResult.builder()
-                .withMember(memberModel)
-                .build();
+            MemberModel memberModel = new ModelConverter().toMemberModel(newMember);
+            return AddMemberResult.builder()
+                    .withMember(memberModel)
+                    .build();
+        }
+    private String formatToIsoDate(String date) {
+        try {
+            LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            LocalDateTime dateTime = parsedDate.atStartOfDay();
+            DateTimeFormatter isoFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            return dateTime.atOffset(ZoneOffset.UTC).format(isoFormatter);
+        } catch (Exception e) {
+            throw new InvalidAttributeValueException("Join date [" + date + "] is not in valid format. Expected format: yyyy-MM-dd");
+        }
     }
 }
 

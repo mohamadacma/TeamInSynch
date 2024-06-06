@@ -73,8 +73,11 @@ public class SearchMembersActivityTest {
             ));
         }
         List<MemberModel> actualMembers = result.getMembers();
-        Assertions.assertEquals(expectedMembers.size(), actualMembers.size());
 
+        System.out.println("Expected: " + expectedMembers);
+        System.out.println("Actual: " + actualMembers);
+        Assertions.assertEquals(expectedMembers.size(), actualMembers.size());
+        Assertions.assertEquals(expectedMembers, actualMembers);
     }
 
     @Test

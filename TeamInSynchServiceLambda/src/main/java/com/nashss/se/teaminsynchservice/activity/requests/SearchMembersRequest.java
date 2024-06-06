@@ -1,6 +1,5 @@
 package com.nashss.se.teaminsynchservice.activity.requests;
 
-
 public class SearchMembersRequest {
     private final String memberName;
     private final String city;
@@ -11,7 +10,7 @@ public class SearchMembersRequest {
         this.memberName = memberName;
         this.city = city;
         this.teamName = teamName;
-        this. managerEmail = managerEmail;
+        this.managerEmail = managerEmail;
     }
 
     public String getMemberName() {
@@ -26,7 +25,9 @@ public class SearchMembersRequest {
         return teamName;
     }
 
-    public String getManagerEmail() {return managerEmail; }
+    public String getManagerEmail() {
+        return managerEmail;
+    }
 
     @Override
     public String toString() {

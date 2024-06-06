@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 @JsonDeserialize(builder = AddMemberRequest.Builder.class)
 public class AddMemberRequest {
-    private final String memberId;
     private final String memberName;
     private final String joinDate;
     private final String phoneNumber;
@@ -14,9 +13,9 @@ public class AddMemberRequest {
     private final String role;
     private final String memberEmail;
     private final String managerEmail;
+    private final String teamName;
 
-    private AddMemberRequest(String memberId, String memberName, String joinDate, String phoneNumber, String city, String background, String role, String memberEmail, String managerEmail) {
-        this.memberId = memberId;
+    private AddMemberRequest(String memberName, String joinDate, String phoneNumber, String city, String background, String role, String memberEmail, String managerEmail, String teamName) {
         this.memberName = memberName;
         this.joinDate = joinDate;
         this.phoneNumber = phoneNumber;
@@ -24,11 +23,9 @@ public class AddMemberRequest {
         this.background = background;
         this.role = role;
         this.memberEmail = memberEmail;
-        this.managerEmail = managerEmail;
-    }
+        this. managerEmail = managerEmail;
+        this.teamName= teamName;
 
-    public String getMemberId() {
-        return memberId;
     }
 
     public String getMemberName() {
@@ -59,10 +56,13 @@ public class AddMemberRequest {
         return memberEmail;
     }
 
+    public String getTeamName() {
+        return teamName;
+    }
+
     @Override
     public String toString() {
         return "AddMemberRequest{" +
-                "memberId='" + memberId + '\'' +
                 ", memberName='" + memberName + '\'' +
                 ", joinDate='" + joinDate + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
@@ -70,7 +70,7 @@ public class AddMemberRequest {
                 ", background='" + background + '\'' +
                 ", role='" + role + '\'' +
                 ", memberEmail='" + memberEmail + '\'' +
-                ", managerEmail='" + managerEmail + '\'' +
+                ", teamName='" + teamName + '\'' +
                 '}';
     }
 
@@ -80,7 +80,6 @@ public class AddMemberRequest {
 
     @JsonPOJOBuilder
     public static class Builder {
-        private String memberId;
         private String memberName;
         private String joinDate;
         private String phoneNumber;
@@ -89,11 +88,7 @@ public class AddMemberRequest {
         private String role;
         private String memberEmail;
         private String managerEmail;
-
-        public Builder withMemberId(String memberId) {
-            this.memberId = memberId;
-            return this;
-        }
+        private String teamName;
 
         public Builder withMemberName(String memberName) {
             this.memberName = memberName;
@@ -135,8 +130,14 @@ public class AddMemberRequest {
             return this;
         }
 
+        public Builder withTeamName(String teamName) {
+            this.teamName = teamName;
+            return this;
+        }
+
+
         public AddMemberRequest build() {
-            return new AddMemberRequest(memberId, memberName, joinDate, phoneNumber, city, background, role, memberEmail, managerEmail);
+            return new AddMemberRequest( memberName, joinDate, phoneNumber, city, background, role, memberEmail, managerEmail,teamName);
         }
     }
 }

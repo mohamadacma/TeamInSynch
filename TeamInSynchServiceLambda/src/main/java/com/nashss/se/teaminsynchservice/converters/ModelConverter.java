@@ -125,6 +125,7 @@ import java.util.stream.Collectors;
                 .withJoinDate(member.getJoinDate())
                 .withBackground(member.getBackground())
                 .withRole(member.getRole())
+                .withTeamName(member.getTeamName())
                 .build();
     }
 

@@ -14,18 +14,18 @@ public class AddMemberLambda
                 () -> {
                     AddMemberRequest request = input.fromBody(AddMemberRequest.class);
                     return input.fromUserClaims(claims ->
-                            AddMemberRequest.builder()
-                                    .withMemberId(request.getMemberId())
-                                    .withMemberName(request.getMemberName())
-                                    .withJoinDate(request.getJoinDate())
-                                    .withPhoneNumber(request.getPhoneNumber())
-                                    .withCity(request.getCity())
-                                    .withBackground(request.getBackground())
-                                    .withRole(request.getRole())
-                                    .withMemberEmail(request.getMemberEmail())
-                                    .withManagerEmail(claims.get("email"))
-                                    .build());
-                },
+                        AddMemberRequest.builder()
+                                .withMemberName(request.getMemberName())
+                                .withJoinDate(request.getJoinDate())
+                                .withPhoneNumber(request.getPhoneNumber())
+                                .withCity(request.getCity())
+                                .withBackground(request.getBackground())
+                                .withRole(request.getRole())
+                                .withMemberEmail(request.getMemberEmail())
+                                .withTeamName(request.getTeamName())
+                                .withManagerEmail(claims.get("email"))
+                                .build());
+                    },
                 (request, serviceComponent) ->
                         serviceComponent.provideAddMemberActivity().handleRequest(request)
         );

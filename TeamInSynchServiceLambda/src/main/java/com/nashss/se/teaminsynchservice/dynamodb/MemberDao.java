@@ -134,62 +134,30 @@ public class MemberDao {
      */
     public List<Member> searchMembers(String memberName, String city, String teamName) {
         Map<String, AttributeValue> valueMap = new HashMap<>();
-        String keyConditionExpression = null;
-        String indexName = null;
-
-        if (teamName != null && !teamName.isEmpty()) {
-            valueMap.put(":teamName", new AttributeValue().withS(teamName));
-            keyConditionExpression = "teamName = :teamName";
-            indexName = "TeamNameIndex";
-        } else if (city != null && !city.isEmpty()) {
-            valueMap.put(":city", new AttributeValue().withS(city));
-            keyConditionExpression = "city = :city";
-            indexName = "CityIndex";
-        } else if (memberName != null && !memberName.isEmpty()) {
-            valueMap.put(":memberName", new AttributeValue().withS(memberName));
-            keyConditionExpression = "memberName = :memberName";
-            indexName = "MemberNameIndex";
-        } else {
-            throw new IllegalArgumentException("At least one search criteria (memberName, city, teamName) must be provided");
-        }
-
-        DynamoDBQueryExpression<Member> queryExpression = new DynamoDBQueryExpression<Member>()
-                .withConsistentRead(false)
-                .withKeyConditionExpression(keyConditionExpression)
-                .withExpressionAttributeValues(valueMap)
-                .withIndexName(indexName);
-
-        return dynamoDBMapper.query(Member.class, queryExpression);
-    }
-}
-
-   /* public List<Member> searchMembers(String memberName, String city, String teamName) {
-        Map<String, AttributeValue> valueMap = new HashMap<>();
-        StringBuilder keyConditionExpression = new StringBuilder();
+        StringBuilder filterExpression = new StringBuilder();
 
         if (memberName != null && !memberName.isEmpty()) {
             valueMap.put(":memberName", new AttributeValue().withS(memberName));
-            keyConditionExpression.append("memberName = :memberName");
+            filterExpression.append("memberName = :memberName");
         }
 
         if (city != null && !city.isEmpty()) {
-            if (keyConditionExpression.length() > 0) keyConditionExpression.append(" AND ");
+            if (filterExpression.length() > 0) filterExpression.append(" AND ");
             valueMap.put(":city", new AttributeValue().withS(city));
-            keyConditionExpression.append("city = :city");
+            filterExpression.append("city = :city");
         }
 
         if (teamName != null && !teamName.isEmpty()) {
-            if (keyConditionExpression.length() > 0) keyConditionExpression.append(" AND ");
+            if (filterExpression.length() > 0) filterExpression.append(" AND ");
             valueMap.put(":teamName", new AttributeValue().withS(teamName));
-            keyConditionExpression.append("teamName = :teamName");
+            filterExpression.append("teamName = :teamName");
         }
 
         DynamoDBQueryExpression<Member> queryExpression = new DynamoDBQueryExpression<Member>()
                 .withConsistentRead(false)
-                .withKeyConditionExpression(keyConditionExpression.toString())
+                .withKeyConditionExpression(filterExpression.toString())
                 .withExpressionAttributeValues(valueMap);
 
-        // Determine which index to use based on the search criteria
         if (memberName != null && !memberName.isEmpty()) {
             queryExpression.withIndexName("MemberNameIndex");
         } else if (city != null && !city.isEmpty()) {
@@ -201,4 +169,3 @@ public class MemberDao {
         return dynamoDBMapper.query(Member.class, queryExpression);
     }
 }
-*/
