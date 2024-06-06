@@ -1,3 +1,4 @@
+
 package com.nashss.se.teaminsynchservice.activity.results;
 
 import com.nashss.se.teaminsynchservice.models.WeatherModel;

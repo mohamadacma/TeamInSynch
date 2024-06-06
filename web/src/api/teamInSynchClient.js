@@ -3,7 +3,7 @@ import BindingClass from "../util/bindingClass";
 import Authenticator from "./authenticator";
 
 /**
- * Client to call the MusicPlaylistService.
+ * Client to call the TeamInSynchService.
  *
  * This could be a great place to explore Mixins. Currently the client is being loaded multiple times on each page,
  * which we could avoid using inheritance or Mixins.
@@ -73,7 +73,6 @@ export default class TeamInSynchClient extends BindingClass {
 
    /**
         * Adds a new member to a team owned by a manager.
-        * @param memberId Unique identifier for the member.
         * @param memberName Name of the member.
         * @param joinDate Date when the member joined.
         * @param phoneNumber Phone number of the member.
@@ -84,11 +83,10 @@ export default class TeamInSynchClient extends BindingClass {
         * @param errorCallback (Optional) A function to execute if the call fails.
         * @returns The added member's metadata.
         */
-   async addMember(memberId, memberName, joinDate, phoneNumber, city, background, role, memberEmail, errorCallback) {
+   async addMember( memberName, joinDate, phoneNumber, city, background, role, memberEmail, teamName, errorCallback) {
        try {
             const token = await this.getTokenOrThrow("Only authenticated users can add a member.");
             const response = await this.axiosClient.post(`members`, {
-                        memberId: memberId,
                         memberName: memberName,
                         joinDate: joinDate,
                         phoneNumber: phoneNumber,
@@ -96,6 +94,7 @@ export default class TeamInSynchClient extends BindingClass {
                         background: background,
                         role: role,
                         memberEmail: memberEmail,
+                        teamName: teamName
                     }, {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -120,7 +119,7 @@ export default class TeamInSynchClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The updated member's metadata.
      */
-   async updateMember(memberId, memberName, joinDate, phoneNumber, city, background, role, memberEmail, errorCallback) {
+   async updateMember(memberId, memberName, joinDate, phoneNumber, city, background, role, memberEmail, teamName, errorCallback) {
        try {
              const token = await this.getTokenOrThrow("Only authenticated users can add a song to a playlist.");
              const response = await this.axiosClient.put(`members/${memberId}`, {
@@ -131,7 +130,8 @@ export default class TeamInSynchClient extends BindingClass {
                               city: city,
                               background: background,
                               role: role,
-                              memberEmail: memberEmail
+                              memberEmail: memberEmail,
+                              teamName: teamName
                           }, {
                               headers: {
                                   Authorization: `Bearer ${token}`
@@ -152,8 +152,6 @@ export default class TeamInSynchClient extends BindingClass {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can delete a member.");
             const response = await this.axiosClient.delete(`members/${memberId}`, {
-                           memberId: memberId,
-            }, {
                 headers: {
                       Authorization: `Bearer ${token}`
                              }
@@ -164,18 +162,28 @@ export default class TeamInSynchClient extends BindingClass {
                      }
             }
     /**
-     * Search for a soong.
-     * @param criteria A string containing search criteria to pass to the API.
-     * @returns The playlists that match the search criteria.
-     */
-    async search(criteria, errorCallback) {
-        try {
-            const queryParams = new URLSearchParams({ q: criteria })
+         * Search for members.
+         * @param {String} teamName The team name to search for.
+         * @param {String} city The city to search for.
+         * @param {String} memberName The member name to search for.
+         * @param {Function} errorCallback (Optional) A function to execute if the call fails.
+         * @returns {Array} The members that match the search criteria.
+         */
+    async searchMembers(teamName, city, memberName, errorCallback) {
+           try {
+            const queryParams = new URLSearchParams()
+                        if (teamName) {
+                            queryParams.append('teamName', teamName);
+                        }
+                        if (city) {
+                            queryParams.append('city', city);
+                        }
+                        if (memberName) {
+                            queryParams.append('memberName', memberName);
+                        }
             const queryString = queryParams.toString();
-
-            const response = await this.axiosClient.get(`playlists/search?${queryString}`);
-
-            return response.data.playlists;
+            const response = await this.axiosClient.get(`members/search?${queryString}`);
+            return response.data.members;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
