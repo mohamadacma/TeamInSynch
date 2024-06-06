@@ -3,6 +3,7 @@ package com.nashss.se.teaminsynchservice.dynamodb;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.teaminsynchservice.dynamodb.models.Member;
+import com.nashss.se.teaminsynchservice.dynamodb.models.Team;
 import com.nashss.se.teaminsynchservice.exceptions.MemberNotFoundException;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
@@ -92,6 +93,18 @@ public class MemberDao {
 
         return dynamoDBMapper.query(Member.class, queryExpression);
     }
+    private List<Team> getTeamsByTeamName(String teamName) {
+        Map<String, AttributeValue> valueMap = new HashMap<>();
+        valueMap.put(":teamName", new AttributeValue().withS(teamName));
+
+        DynamoDBQueryExpression<Team> queryExpression = new DynamoDBQueryExpression<Team>()
+                .withIndexName("TeamNameIndex")
+                .withConsistentRead(false)
+                .withKeyConditionExpression("teamName = :teamName")
+                .withExpressionAttributeValues(valueMap);
+
+        return dynamoDBMapper.query(Team.class, queryExpression);
+    }
 
     /**
      * Retrieves a list of Member objects from the database given a list of member IDs.
@@ -120,6 +133,37 @@ public class MemberDao {
      * @return a List of member objects that match the given criteria.
      */
     public List<Member> searchMembers(String memberName, String city, String teamName) {
+        Map<String, AttributeValue> valueMap = new HashMap<>();
+        String keyConditionExpression = null;
+        String indexName = null;
+
+        if (teamName != null && !teamName.isEmpty()) {
+            valueMap.put(":teamName", new AttributeValue().withS(teamName));
+            keyConditionExpression = "teamName = :teamName";
+            indexName = "TeamNameIndex";
+        } else if (city != null && !city.isEmpty()) {
+            valueMap.put(":city", new AttributeValue().withS(city));
+            keyConditionExpression = "city = :city";
+            indexName = "CityIndex";
+        } else if (memberName != null && !memberName.isEmpty()) {
+            valueMap.put(":memberName", new AttributeValue().withS(memberName));
+            keyConditionExpression = "memberName = :memberName";
+            indexName = "MemberNameIndex";
+        } else {
+            throw new IllegalArgumentException("At least one search criteria (memberName, city, teamName) must be provided");
+        }
+
+        DynamoDBQueryExpression<Member> queryExpression = new DynamoDBQueryExpression<Member>()
+                .withConsistentRead(false)
+                .withKeyConditionExpression(keyConditionExpression)
+                .withExpressionAttributeValues(valueMap)
+                .withIndexName(indexName);
+
+        return dynamoDBMapper.query(Member.class, queryExpression);
+    }
+}
+
+   /* public List<Member> searchMembers(String memberName, String city, String teamName) {
         Map<String, AttributeValue> valueMap = new HashMap<>();
         StringBuilder keyConditionExpression = new StringBuilder();
 
@@ -157,5 +201,4 @@ public class MemberDao {
         return dynamoDBMapper.query(Member.class, queryExpression);
     }
 }
-
-
+*/

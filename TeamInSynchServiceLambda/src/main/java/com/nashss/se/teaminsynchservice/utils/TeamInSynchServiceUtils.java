@@ -2,7 +2,10 @@ package com.nashss.se.teaminsynchservice.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -36,7 +39,8 @@ public final class TeamInSynchServiceUtils {
      */
     public static boolean isValidIsoDate(String dateString) {
         try {
-            ZonedDateTime.parse(dateString);
+            DateTimeFormatter isoFormatter = DateTimeFormatter.ISO_DATE_TIME;
+            OffsetDateTime.parse(dateString, isoFormatter);
             return true;
         } catch (DateTimeParseException e) {
             return false;

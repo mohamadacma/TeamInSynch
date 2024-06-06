@@ -2,25 +2,47 @@
     /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
     --primary-color: #5D5E5E;
     --secondary-color: #ffffff;
-    --tertiary-color: #F5881F;
+    --tertiary-color: #1E90FF;
+    --input-border-color: #ccc;
+    --input-focus-border-color: #1E90FF;
     --error-color: #EE3A23;
+    --input-bg-color: #f7f7f7;
+     --input-text-color: #333;
+
+
+    --input-border-color: #ccc;
+    --input-focus-border-color: #5D5E5E;
+    --input-bg-color: #f7f7f7;
+    --input-text-color: #333;
 }
 
 .background {
-    background-color: #8A8C8F;
+    background-color: #FFF1E6;
     margin: 0;
     counter-reset: section;
     font-family: "Helvetica Neue",Helvetica,sans-serif;
 }
 
+
+
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    background-color: #FDA50F;
+    background-size: cover;
+    background-position: center;
+    color: var(--primary-color);
+}
 .header {
     /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--primary-color);
+     margin: 30px auto;
+
     color: var(--secondary-color);
-    padding: 4px 20px;
+    padding: 10px 20px;
 }
 
 .button {
@@ -31,13 +53,16 @@
   text-align: center;
   font-weight: bold;
   text-decoration: none;
+  border-radius: 4px;
   cursor: pointer;
+
 }
 
 .button-group {
     display: flex;
     justify-content: space-between;
 }
+
 
 .header_home {
     font-size: 36px;

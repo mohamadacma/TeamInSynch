@@ -14,8 +14,9 @@ public class MemberModel {
     private final String joinDate;
     private final String background;
     private final String role;
+    private final String teamName;
 
-    public MemberModel(String memberId, String memberName, String memberEmail, String phoneNumber, String city, String joinDate, String background, String role) {
+    public MemberModel(String memberId, String memberName, String memberEmail, String phoneNumber, String city, String joinDate, String background, String role, String teamName) {
         this.memberId = memberId;
         this.memberName = memberName;
         this.memberEmail = memberEmail;
@@ -24,13 +25,14 @@ public class MemberModel {
         this.joinDate = joinDate;
         this.background = background;
         this.role = role;
+        this.teamName=teamName;
     }
 
     public String getMemberId() {
         return memberId;
     }
 
-    public String getName() {
+    public String getMemberName() {
         return memberName;
     }
 
@@ -58,6 +60,10 @@ public class MemberModel {
         return role;
     }
 
+    public String getTeamName() {
+        return teamName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -75,12 +81,13 @@ public class MemberModel {
                 Objects.equals(city, that.city) &&
                 Objects.equals(joinDate, that.joinDate) &&
                 Objects.equals(background, that.background) &&
-                Objects.equals(role, that.role);
+                Objects.equals(role, that.role) &&
+                Objects.equals(teamName, that.teamName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(memberId, memberName, memberEmail, phoneNumber, city, joinDate, background, role);
+        return Objects.hash(memberId, memberName, memberEmail, phoneNumber, city, joinDate, background, role, teamName);
     }
 
     public static Builder builder() {
@@ -96,6 +103,7 @@ public class MemberModel {
         private String joinDate;
         private String background;
         private String role;
+        private String teamName;
 
         public Builder withMemberId(String memberId) {
             this.memberId = memberId;
@@ -136,9 +144,14 @@ public class MemberModel {
             this.role = role;
             return this;
         }
+        public Builder withTeamName(String teamName) {
+            this.teamName = teamName;
+            return this;
+        }
+
 
         public MemberModel build() {
-            return new MemberModel(memberId, memberName, memberEmail, phoneNumber, city, joinDate, background, role);
+            return new MemberModel(memberId, memberName, memberEmail, phoneNumber, city, joinDate, background, role,teamName);
         }
     }
 }

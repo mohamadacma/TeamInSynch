@@ -65,7 +65,7 @@ public class UpdateMemberActivityTest {
         //THEN
         verify(memberDao).saveMember(existingMember);
         Assertions.assertNotNull(result);
-        Assertions.assertEquals(updatedName, result.getMember().getName());
+        Assertions.assertEquals(updatedName, result.getMember().getMemberName());
         Assertions.assertEquals(phoneNumber, result.getMember().getPhoneNumber());
         Assertions.assertEquals(city, result.getMember().getCity());
         Assertions.assertEquals(background, result.getMember().getBackground());

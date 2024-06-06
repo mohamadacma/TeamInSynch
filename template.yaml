@@ -107,11 +107,6 @@ Resources:
       Domain: !Ref CognitoDomain
       UserPoolId: !Ref UserPool
 
-
-  #-----------------------------------------------------
-  # CloudFront Configuration
-  #-----------------------------------------------------
-
   CloudFrontOriginAccessIdentity:
     Type: 'AWS::CloudFront::CloudFrontOriginAccessIdentity'
     Condition: DeployCloudFront
@@ -129,18 +124,14 @@ Resources:
         Enabled: true
         HttpVersion: http2
         PriceClass: PriceClass_100
-        # List of origins that Cloudfront will connect to
         Origins:
           - Id: s3-website
             DomainName: !Sub "${S3Bucket}.s3.us-east-2.amazonaws.com"
             OriginPath: /static
             S3OriginConfig:
-              # Restricting Bucket access through an origin access identity
               OriginAccessIdentity:
                 Fn::Sub: 'origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}'
-        # To connect the CDN to the origins you need to specify behaviours
         DefaultCacheBehavior:
-          # Compress resources automatically ( gzip )
           Compress: 'true'
           AllowedMethods:
             - GET
@@ -149,7 +140,7 @@ Resources:
           ForwardedValues:
             QueryString: false
           TargetOriginId: s3-website
-          ViewerProtocolPolicy : redirect-to-https
+          ViewerProtocolPolicy: redirect-to-https
           CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
 
   S3BucketPolicy:
@@ -158,7 +149,6 @@ Resources:
     Properties:
       Bucket: !Ref S3Bucket
       PolicyDocument:
-        # Restricting access to cloudfront only.
         Statement:
           -
             Effect: Allow
@@ -167,11 +157,6 @@ Resources:
               - !Sub "arn:aws:s3:::${S3Bucket}/*"
             Principal:
               AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}"
-
-
-  #-----------------------------------------------------
-  # Role/Permissions/Policy Configuration
-  #-----------------------------------------------------
 
   AccessRole:
     Type: AWS::IAM::Role
@@ -207,7 +192,6 @@ Resources:
               - Effect: Allow
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/members"
-
         - PolicyName: 'AccessTeamsTable'
           PolicyDocument:
             Version: '2012-10-17'
@@ -215,10 +199,6 @@ Resources:
               - Effect: Allow
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/teams"
-
-  #-----------------------------------------------------
-  # Lambda Functions Configuration
-  #-----------------------------------------------------
 
   AddMemberLambda:
     Type: AWS::Serverless::Function
@@ -280,6 +260,28 @@ Resources:
             Path: /members/{id}
             Method: get
 
+  SearchMembersLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: TeamInSynchServiceLambda
+      Handler: com.nashss.se.teaminsynchservice.lambda.SearchMembersLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        TeamInSynchService:
+          Type: Api
+          Properties:
+            Path: /members/search
+            Method: get
+            Auth:
+              Authorizer: NONE
+
   GetWeatherLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -321,10 +323,6 @@ Resources:
           Properties:
             Path: /search-news
             Method: get
-
-  #-----------------------------------------------------
-  # DynamoDB Configuration
-  #-----------------------------------------------------
 
   MembersTable:
     Type: AWS::DynamoDB::Table
@@ -378,11 +376,6 @@ Resources:
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "Teams"
-
-#-----------------------------------------------------
-# The outputs defined below will be printed
-#  to the screen after a successful deploy
-#-----------------------------------------------------
 
 Outputs:
 
