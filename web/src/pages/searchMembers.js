@@ -102,18 +102,36 @@ class SearchMembers extends BindingClass {
             return '<h4>No results found</h4>';
         }
 
-       let html = '<table><tr><th>Name</th><th>City</th><th>Team</th></tr>';
-        for (const res of searchResults) {
-            html += `
-            <tr>
-                <td>
-                    <a href="member.html?id=${res.id}">${res.memberName}</a>
-                </td>
-                <td>${res.city}</td>
-                <td>${res.teamName}</td>
-            </tr>`;
-        }
-        html += '</table>';
+       let html = `
+               <table>
+                   <thead>
+                       <tr>
+                           <th>Name</th>
+                           <th>City</th>
+                           <th>Team</th>
+                           <th>Phone</th>
+                           <th>Background</th>
+                           <th>Role</th>
+                           <th>Email</th>
+                           <th>ID</th>
+                       </tr>
+                   </thead>
+                   <tbody>`;
+
+           for (const res of searchResults) {
+               html += `
+               <tr>
+                   <td><a href="member.html?id=${res.id}">${res.memberName}</a></td>
+                   <td>${res.city}</td>
+                   <td>${res.teamName}</td>
+                   <td>${res.phoneNumber}</td>
+                   <td>${res.background}</td>
+                   <td>${res.role}</td>
+                   <td>${res.memberEmail}</td>
+                   <td>${res.memberId}</td>
+               </tr>`;
+           }
+           html += '</tbody></table>';
 
         return html;
     }

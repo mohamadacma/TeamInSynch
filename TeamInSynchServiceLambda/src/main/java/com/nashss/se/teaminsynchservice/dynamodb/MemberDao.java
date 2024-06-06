@@ -132,7 +132,8 @@ public class MemberDao {
      * @param teamName   teamName of the members to find.
      * @return a List of member objects that match the given criteria.
      */
-    public List<Member> searchMembers(String memberName, String city, String teamName) {
+
+ public List<Member> searchMembers(String memberName, String city, String teamName) {
         Map<String, AttributeValue> valueMap = new HashMap<>();
         StringBuilder filterExpression = new StringBuilder();
 

@@ -14,8 +14,9 @@ public class UpdateMemberRequest {
     private final String role;
     private final String memberEmail;
     private final String managerEmail;
+    private final String teamName;
 
-    public UpdateMemberRequest(String memberId, String memberName, String joinDate, String phoneNumber, String city, String background, String role, String memberEmail, String managerEmail) {
+    public UpdateMemberRequest(String memberId, String memberName, String joinDate, String phoneNumber, String city, String background, String role, String memberEmail, String managerEmail, String teamName) {
         this.memberId = memberId;
         this.memberName = memberName;
         this.joinDate = joinDate;
@@ -25,6 +26,7 @@ public class UpdateMemberRequest {
         this.role = role;
         this.memberEmail = memberEmail;
         this.managerEmail = managerEmail;
+        this.teamName=teamName;
     }
 
     public String getMemberId() {
@@ -60,6 +62,10 @@ public class UpdateMemberRequest {
     }
     public String getManagerEmail() { return managerEmail; }
 
+    public String getTeamName() {
+        return teamName;
+    }
+
     @Override
     public String toString() {
         return "AddMemberRequest{" +
@@ -72,6 +78,7 @@ public class UpdateMemberRequest {
                 ", role='" + role + '\'' +
                 ", memberEmail='" + memberEmail + '\'' +
                 ", managerEmail='" + managerEmail + '\'' +
+                ", teamName='" + teamName + '\'' +
                 '}';
     }
     public static Builder builder() {
@@ -89,6 +96,7 @@ public class UpdateMemberRequest {
         private String role;
         private String memberEmail;
         private String managerEmail;
+        private String teamName;
 
         public Builder withMemberId(String memberId) {
             this.memberId= memberId;
@@ -132,9 +140,13 @@ public class UpdateMemberRequest {
             this.managerEmail = managerEmail;
             return this;
         }
+        public Builder withTeamName(String teamName) {
+            this.teamName= teamName;
+            return this;
+        }
 
         public UpdateMemberRequest build() {
-            return new UpdateMemberRequest(memberId, memberName, joinDate, phoneNumber, city, background, role, memberEmail, managerEmail);
+            return new UpdateMemberRequest(memberId, memberName, joinDate, phoneNumber, city, background, role, memberEmail, managerEmail, teamName);
         }
         }
     }

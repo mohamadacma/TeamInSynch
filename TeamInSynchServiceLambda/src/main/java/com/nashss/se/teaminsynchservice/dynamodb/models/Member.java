@@ -2,6 +2,7 @@ package com.nashss.se.teaminsynchservice.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.util.Objects;
@@ -31,6 +32,7 @@ public class Member {
     }
 
     @DynamoDBAttribute(attributeName = "memberName")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = "MemberNameIndex")
     public String getMemberName() {
         return memberName;
     }
@@ -67,6 +69,7 @@ public class Member {
     }
 
     @DynamoDBAttribute(attributeName = "city")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = "CityIndex")
     public String getCity() {
         return city;
     }
@@ -94,6 +97,7 @@ public class Member {
     }
 
     @DynamoDBAttribute(attributeName = "teamName")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = "TeamNameIndex")
     public String getTeamName() {
         return teamName;
     }

@@ -53,9 +53,9 @@ class AddMember extends BindingClass {
         const member = await this.client.addMember(
         memberName,
         joinDate,
-        email,
-        city,
         phone,
+        city,
+        email,
         role,
         background,
         teamName,
