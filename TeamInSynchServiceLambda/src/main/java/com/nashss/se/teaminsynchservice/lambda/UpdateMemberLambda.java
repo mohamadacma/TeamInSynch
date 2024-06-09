@@ -24,6 +24,7 @@ public class UpdateMemberLambda
                                     .withBackground(request.getBackground())
                                     .withRole(request.getRole())
                                     .withMemberEmail(request.getMemberEmail())
+                                    .withTeamName(request.getTeamName())
                                     .withManagerEmail(claims.get("email"))
                                     .build());
                 },
