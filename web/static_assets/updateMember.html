@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <script type="text/javascript" src="assets/updateMember.js" ></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
-<body>
-$END$
+<body class="background">
+  <header class="header" id="header"></header>
+  <div class="card">
+    <h2>Update Member</h2>
+    <form class="card-content" id="update-member-form">
+      <p class="hidden error" id="error-message"> </p>
+      <p class="form-field">
+        <label>Member Name</label>
+        <input type="text" required class="validated-field" id="member-name" placeholder="Amy Adams" autofocus>
+      </p>
+      <p class="form-field">
+        <label>Join Date</label>
+        <input type="date" required class="validated-field" id="join-date">
+      </p>
+      <p class="form-field">
+        <label>Phone Number</label>
+        <input type="text" required class="validated-field" id="member-phone" placeholder="123-456-7890">
+      </p>
+      <p class="form-field">
+        <label>City</label>
+        <input type="text" required class="validated-field" id="member-city" placeholder="New York">
+      </p>
+      <p class="form-field">
+        <label>Background</label>
+        <textarea id="member-background" required class="validated-field" placeholder="Background"></textarea>
+      </p>
+      <p class="form-field">
+        <label>Role</label>
+        <input type="text" required class="validated-field" id="member-role" placeholder="Developer">
+      </p>
+      <p class="form-field">
+        <label>Member Email</label>
+        <input type="email" required class="validated-field" id="member-email" placeholder="email@example.com">
+      <p>
+      <p class="form-field">
+        <label>Team</label>
+        <input type="text" required class="validated-field" id="team-name" placeholder="Alpha">
+      <p>
+      <button type="submit" class="button" id="save-btn">Save Member</button>
+    </p>
+    </form>
+  </div>
 </body>
 </html>

@@ -49,13 +49,11 @@ public class UpdateMemberActivity {
      */
     public UpdateMemberResult handleRequest(final UpdateMemberRequest updateMemberRequest) {
         log.info("Received UpdateMemberRequest {}", updateMemberRequest);
-
-        // Retrieve member
+        // Retrieve the existing member
         Member member = memberDao.getMemberById(updateMemberRequest.getMemberId());
         if (member == null) {
             throw new MemberNotFoundException("Member not found with id: " + updateMemberRequest.getMemberId());
         }
-
         // Validate fields
             if (!TeamInSynchServiceUtils.isValidString(updateMemberRequest.getMemberName())) {
                 throw new InvalidAttributeValueException("Member name [" + updateMemberRequest.getMemberName() +
@@ -83,12 +81,18 @@ public class UpdateMemberActivity {
                         throw new InvalidAttributeValueException("Email [" + updateMemberRequest.getMemberEmail() +
                                 "] contains illegal characters");
                     }
+                    if (!TeamInSynchServiceUtils.isValidString(updateMemberRequest.getTeamName())) {
+                         throw new InvalidAttributeValueException("teamName [" + updateMemberRequest.getTeamName() +
+                    "] contains illegal characters");
+
+                    }
                     member.setMemberName(updateMemberRequest.getMemberName());
                     member.setPhoneNumber(updateMemberRequest.getPhoneNumber());
                     member.setCity(updateMemberRequest.getCity());
                     member.setBackground(updateMemberRequest.getBackground());
                     member.setRole(updateMemberRequest.getRole());
                     member.setMemberEmail(updateMemberRequest.getMemberEmail());
+                    member.setTeamName(updateMemberRequest.getTeamName());
                     memberDao.saveMember(member);
 
                     return UpdateMemberResult.builder()

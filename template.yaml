@@ -240,6 +240,26 @@ Resources:
             Path: /member/{id}
             Method: put
 
+  GetMemberLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: TeamInSynchServiceLambda
+      Handler: com.nashss.se.teaminsynchservice.lambda.GetMemberLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        TeamInSynchService:
+          Type: Api
+          Properties:
+            Path: /members/{id}
+            Method: get
+
   DeleteMemberLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -258,7 +278,7 @@ Resources:
           Type: Api
           Properties:
             Path: /members/{id}
-            Method: get
+            Method: delete
 
   SearchMembersLambda:
     Type: AWS::Serverless::Function
