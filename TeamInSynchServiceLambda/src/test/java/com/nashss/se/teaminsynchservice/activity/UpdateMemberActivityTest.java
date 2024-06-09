@@ -47,6 +47,7 @@ public class UpdateMemberActivityTest {
         existingMember.setBackground(background);
         existingMember.setRole(role);
         existingMember.setMemberEmail(memberEmail);
+        existingMember.setTeamName("alpha");
 
         when(memberDao.getMemberById(memberId)).thenReturn(existingMember);
 
@@ -59,6 +60,7 @@ public class UpdateMemberActivityTest {
                 .withBackground(background)
                 .withRole(role)
                 .withMemberEmail(memberEmail)
+                .withTeamName("alpha")
                 .build();
         //WHEN
         UpdateMemberResult result = activity.handleRequest(request);

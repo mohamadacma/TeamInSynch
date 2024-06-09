@@ -15,7 +15,7 @@ export default class TeamInSynchClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'addMember', 'deleteMember', 'updateMember', 'searchMembers'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'addMember', 'deleteMember', 'updateMember', 'searchMembers', 'getMember'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -67,7 +67,6 @@ export default class TeamInSynchClient extends BindingClass {
         if (!isLoggedIn) {
             throw new Error(unauthenticatedErrorMessage);
         }
-
         return await this.authenticator.getUserToken();
     }
 
@@ -121,7 +120,8 @@ export default class TeamInSynchClient extends BindingClass {
      */
    async updateMember(memberId, memberName, joinDate, phoneNumber, city, background, role, memberEmail, teamName, errorCallback) {
        try {
-             const token = await this.getTokenOrThrow("Only authenticated users can add a song to a playlist.");
+             const token = await this.getTokenOrThrow("Only authenticated users can update members.");
+             console.log(token);
              const response = await this.axiosClient.put(`members/${memberId}`, {
                               memberId: memberId,
                               memberName: memberName,
@@ -148,7 +148,7 @@ export default class TeamInSynchClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns A success message or the error response.
      */
-    async deleteMember(memberId, errorCallback) {
+   async deleteMember(memberId, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can delete a member.");
             const response = await this.axiosClient.delete(`members/${memberId}`, {
@@ -157,6 +157,7 @@ export default class TeamInSynchClient extends BindingClass {
                              }
                          });
                          return response.data;
+                         console.log(response);
                      } catch (error) {
                          this.handleError(error, errorCallback)
                      }
@@ -187,8 +188,28 @@ export default class TeamInSynchClient extends BindingClass {
         } catch (error) {
             this.handleError(error, errorCallback)
         }
-
     }
+    /**
+         * Get a member by ID.
+         * @param {String} memberId The ID of the member to fetch.
+         * @param {Function} errorCallback (Optional) A function to execute if the call fails.
+         * @returns {Object} The member data.
+         */
+    async getMember(memberId, errorCallback) {
+         try {
+              const token = await this.getTokenOrThrow("Only authenticated users can get a member.");
+              const response = await this.axiosClient.get(`members/${memberId}`, {
+              headers: {
+                     Authorization: `Bearer ${token}`
+                             }
+                          });
+                          console.log("response" + response)
+                           return response.data.member;
+
+                         } catch (error) {
+                            this.handleError(error, errorCallback)
+                         }
+                  }
 
     /**
      * Helper method to log the error and run any error functions.
