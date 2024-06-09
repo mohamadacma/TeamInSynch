@@ -1,6 +1,6 @@
 
 
-package com.nashss.se.teaminsynchservice.activity.requests;
+package com.nashss.se.teaminsynchservice.activity.weatherRequest;
 
 public class GetGeoCodingRequest {
     private final String city;

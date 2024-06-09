@@ -1,5 +1,5 @@
 
-package com.nashss.se.teaminsynchservice.activity.requests;
+package com.nashss.se.teaminsynchservice.activity.weatherRequest;
 
 public class GetWeatherRequest {
     private final double latitude;

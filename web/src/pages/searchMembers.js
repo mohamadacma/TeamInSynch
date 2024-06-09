@@ -33,12 +33,17 @@ class SearchMembers extends BindingClass {
     /**
      * Add the header to the page and load the TeamInSynchClient.
      */
-    mount() {
+    async mount() {
         // Wire up the form's 'submit' event and the button's 'click' event to the search method.
         document.getElementById('search-members-form').addEventListener('submit', this.searchMembers);
         document.getElementById('search-btn').addEventListener('click', this.searchMembers);
         this.header.addHeaderToPage();
         this.client = new TeamInSynchClient();
+        const currUser = await this.client.getIdentity();
+        console.log( "user"+ currUser);
+                if(!currUser){
+                    this.client.login();
+                }
     }
 
     /**
@@ -114,6 +119,7 @@ class SearchMembers extends BindingClass {
                            <th>Role</th>
                            <th>Email</th>
                            <th>ID</th>
+                           <th>Actions</th>
                        </tr>
                    </thead>
                    <tbody>`;
@@ -129,21 +135,50 @@ class SearchMembers extends BindingClass {
                    <td>${res.role}</td>
                    <td>${res.memberEmail}</td>
                    <td>${res.memberId}</td>
+                   <td>
+                   <select onchange="handleAction(this.value, '${res.memberId}')">
+                   <option value="">Select Action</option>
+                   <option value="edit">Edit</option>
+                   <option value="delete">Delete</option>
+                   <option value="show weather">Weather</option>
+                   <option value="show news"> News</option>
+                  </select>
+                 </td>
                </tr>`;
            }
            html += '</tbody></table>';
 
         return html;
     }
-
 }
-
     /**
-    * Main method to run when the page contents have loaded.
-    */
-    const main = async () => {
-    const searchMembers = new SearchMembers();
-    searchMembers.mount();
-    };
+         * Handle the action from the dropdown menu.
+         * @param {String} action The action to perform (edit or delete).
+         * @param {String} memberId The ID of the member to act on.
+         */
+        window.handleAction = async (action, memberId) => {
+            const client = new TeamInSynchClient();
+            if (action === 'edit') {
+                window.location.href = `updateMember.html?id=${memberId}`;
+            } else if (action === 'delete') {
+                if (confirm('Are you sure you want to delete this member?')) {
+                   try {
+                        const response = await client.deleteMember(memberId);
+                        alert(response.message);
+                        window.location.reload();
+                        } catch (error) {
+                            alert('Failed to delete member: ${error.message}');
+                        }
+                }
+            }
+        };
 
-    window.addEventListener('DOMContentLoaded', main);
+        /**
+         * Main method to run when the page contents have loaded.
+         */
+        function main() {
+            const searchMembers = new SearchMembers();
+            searchMembers.mount();
+        }
+
+        window.addEventListener('DOMContentLoaded', main);

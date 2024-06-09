@@ -45,9 +45,9 @@ class AddMember extends BindingClass {
         const joinDate = document.getElementById('join-date').value;
         const phone = document.getElementById('member-phone').value;
         const city = document.getElementById('member-city').value;
-        const email = document.getElementById('member-email').value;
-        const role = document.getElementById('member-role').value;
         const background = document.getElementById('member-background').value;
+        const role = document.getElementById('member-role').value;
+        const email = document.getElementById('member-email').value;
         const teamName = document.getElementById('team-name').value;
 
         const member = await this.client.addMember(
@@ -55,9 +55,9 @@ class AddMember extends BindingClass {
         joinDate,
         phone,
         city,
-        email,
-        role,
         background,
+        role,
+        email,
         teamName,
         (error) => {
             saveButton.innerText = origButtonText;

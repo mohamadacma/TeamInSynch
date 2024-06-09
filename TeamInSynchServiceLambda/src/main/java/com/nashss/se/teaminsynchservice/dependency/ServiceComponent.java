@@ -1,9 +1,6 @@
 package com.nashss.se.teaminsynchservice.dependency;
 
-import com.nashss.se.teaminsynchservice.activity.AddMemberActivity;
-import com.nashss.se.teaminsynchservice.activity.DeleteMemberActivity;
-import com.nashss.se.teaminsynchservice.activity.SearchMembersActivity;
-import com.nashss.se.teaminsynchservice.activity.UpdateMemberActivity;
+import com.nashss.se.teaminsynchservice.activity.*;
 import dagger.Component;
 
 import javax.inject.Singleton;
@@ -41,4 +38,10 @@ public interface ServiceComponent {
      * @return SearchMembersActivity
      */
     SearchMembersActivity provideSearchMembersActivity();
+    /**
+     * Provides the relevant activity.
+     *
+     * @return GetMemberActivity
+     */
+    GetMemberActivity provideGetMemberActivity();
 }
