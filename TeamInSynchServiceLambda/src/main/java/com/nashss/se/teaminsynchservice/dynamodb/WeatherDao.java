@@ -152,7 +152,7 @@ public class WeatherDao {
         try {
             //extract 1st day data of the default 7-day forecast
             String time = rootNode.path("daily").path("time").get(0).asText();
-            int weatherCode = rootNode.path("daily").path("weathercode").get(0).asInt();
+            int weatherCode = rootNode.path("daily").path("weather_code").get(0).asInt();
             String weatherDescription = new ModelConverter().getDescriptionFromWeatherCode(weatherCode);
             double maxTemperature = rootNode.path("daily").path("temperature_2m_max").get(0).asDouble();
             double minTemperature = rootNode.path("daily").path("temperature_2m_min").get(0).asDouble();
