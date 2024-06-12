@@ -51,10 +51,10 @@ import DataStore from "../util/DataStore";
 
                     const weatherResultsContainer = document.getElementById('weather-results-container');
                      weatherResultsContainer.innerHTML = `
-                     <p>Date: ${weatherData.date}</p>
-                     <p>Max Temperature: ${weatherData.maxTemperature}°C</p>
-                     <p>Min Temperature: ${weatherData.minTemperature}°C</p>
-                     <p>Weather Description: ${weatherData.weatherDescription}</p>
+                     <p>Date: ${weatherData.weather.time}</p>
+                     <p>Max Temperature: ${weatherData.weather.maxTemperature}°C</p>
+                     <p>Min Temperature: ${weatherData.weather.minTemperature}°C</p>
+                     <p>Weather Description: ${weatherData.weather.weatherDescription}</p>
                      `;
                 }
          }

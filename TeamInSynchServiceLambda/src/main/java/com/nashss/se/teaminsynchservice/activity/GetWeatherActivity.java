@@ -65,7 +65,7 @@ public class GetWeatherActivity {
         FetchWeatherRequest fetchWeatherRequest = FetchWeatherRequest.builder()
                 .withLatitude(geoCodingResult.getLatitude())
                 .withLongitude(geoCodingResult.getLongitude())
-                .withDaily("weathercode,temperature_2m_max,temperature_2m_min")
+                .withDaily("&daily=weather_code,temperature_2m_max,temperature_2m_min")
                 .build();
 
         // Return the weather result
