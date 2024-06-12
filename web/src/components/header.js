@@ -35,7 +35,7 @@ export default class Header extends BindingClass {
         const homeButton = document.createElement('a');
         homeButton.classList.add('header_home');
         homeButton.href = 'index.html';
-        homeButton.innerText = 'Teams Synchronizer';
+        homeButton.innerText = '';
 
         const siteTitle = document.createElement('div');
         siteTitle.classList.add('site-title');
@@ -63,6 +63,9 @@ export default class Header extends BindingClass {
 
     createLogoutButton(currentUser) {
         return this.createButton(`Logout: ${currentUser.name}`, this.client.logout);
+                button.classList.add('logout-btn');
+                return button;
+
     }
 
     createButton(text, clickHandler) {
@@ -71,7 +74,8 @@ export default class Header extends BindingClass {
         button.href = '#';
         button.innerText = text;
 
-        button.addEventListener('click', async () => {
+        button.addEventListener('click', async (event) => {
+            event.preventDefault();
             await clickHandler();
         });
 

@@ -6,18 +6,18 @@ import java.util.Objects;
 public class WeatherModel {
     private final Double latitude;
     private final Double longitude;
-    private final List<String> times;
-    private final List<String> weatherDescriptions;
-    private final List<Double> maxTemperatures;
-    private final List<Double> minTemperatures;
+    private final String time;
+    private final String weatherDescription;
+    private final Double maxTemperature;
+    private final Double minTemperature;
 
     private WeatherModel(Builder builder) {
         this.latitude = builder.latitude;
         this.longitude = builder.longitude;
-        this.times = builder.times;
-        this.weatherDescriptions = builder.weatherDescriptions;
-        this.maxTemperatures = builder.maxTemperatures;
-        this.minTemperatures = builder.minTemperatures;
+        this.time = builder.time;
+        this.weatherDescription = builder.weatherDescription;
+        this.maxTemperature = builder.maxTemperature;
+        this.minTemperature = builder.minTemperature;
     }
     public Double getLatitude() {
         return latitude;
@@ -27,20 +27,20 @@ public class WeatherModel {
         return longitude;
     }
 
-    public List<String> getTimes() {
-        return times;
+    public String getTime() {
+        return time;
     }
 
-    public List<String> getWeatherDescriptions() {
-        return weatherDescriptions;
+    public String getWeatherDescription() {
+        return weatherDescription;
     }
 
-    public List<Double> getMaxTemperatures() {
-        return maxTemperatures;
+    public Double getMaxTemperature() {
+        return maxTemperature;
     }
 
-    public List<Double> getMinTemperatures() {
-        return minTemperatures;
+    public Double getMinTemperature() {
+        return minTemperature;
     }
 
     @Override
@@ -50,24 +50,24 @@ public class WeatherModel {
         WeatherModel that = (WeatherModel) o;
         return Objects.equals(latitude, that.latitude) &&
                 Objects.equals(longitude, that.longitude) &&
-                Objects.equals(times, that.times) &&
-                Objects.equals(weatherDescriptions, that.weatherDescriptions) &&
-                Objects.equals(maxTemperatures, that.maxTemperatures) &&
-                Objects.equals(minTemperatures, that.minTemperatures);
+                Objects.equals(time, that.time) &&
+                Objects.equals(weatherDescription, that.weatherDescription) &&
+                Objects.equals(maxTemperature, that.maxTemperature) &&
+                Objects.equals(minTemperature, that.minTemperature);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(latitude, longitude, times, weatherDescriptions, maxTemperatures, minTemperatures);
+        return Objects.hash(latitude, longitude, time, weatherDescription, maxTemperature, minTemperature);
     }
 
     public static class Builder {
         private Double latitude;
         private Double longitude;
-        private List<String> times;
-        private List<String> weatherDescriptions;
-        private List<Double> maxTemperatures;
-        private List<Double> minTemperatures;
+        private String time;
+        private String weatherDescription;
+        private double maxTemperature;
+        private double minTemperature;
 
         public Builder withLatitude(Double latitude) {
             this.latitude = latitude;
@@ -79,23 +79,23 @@ public class WeatherModel {
             return this;
         }
 
-        public Builder withTimes(List<String> times) {
-            this.times = times;
+        public Builder withTime(String time) {
+            this.time = time;
             return this;
         }
 
-        public Builder withWeatherDescriptions(List<String> weatherDescriptions) {
-            this.weatherDescriptions = weatherDescriptions;
+        public Builder withWeatherDescription(String weatherDescription) {
+            this.weatherDescription = weatherDescription;
             return this;
         }
 
-        public Builder withMaxTemperatures(List<Double> maxTemperatures) {
-            this.maxTemperatures = maxTemperatures;
+        public Builder withMaxTemperature(Double maxTemperature) {
+            this.maxTemperature = maxTemperature;
             return this;
         }
 
-        public Builder withMinTemperatures(List<Double> minTemperatures) {
-            this.minTemperatures = minTemperatures;
+        public Builder withMinTemperature(Double minTemperature) {
+            this.minTemperature = minTemperature;
             return this;
         }
 

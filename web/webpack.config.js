@@ -26,6 +26,7 @@ module.exports = {
     addMember: path.resolve(__dirname, 'src', 'pages', 'addMember.js'),
     updateMember: path.resolve(__dirname, 'src', 'pages', 'updateMember.js'),
     searchMembers: path.resolve(__dirname, 'src', 'pages', 'searchMembers.js'),
+    weather: path.resolve(__dirname, 'src', 'pages', 'weather.js'),
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

@@ -122,7 +122,7 @@ export default class TeamInSynchClient extends BindingClass {
        try {
              const token = await this.getTokenOrThrow("Only authenticated users can update members.");
              console.log(token);
-             const response = await this.axiosClient.put(`members/${memberId}`, {
+             const response = await this.axiosClient.put(`member/${memberId}`, {
                               memberId: memberId,
                               memberName: memberName,
                               joinDate: joinDate,
@@ -229,4 +229,17 @@ export default class TeamInSynchClient extends BindingClass {
             errorCallback(error);
         }
     }
+   async getWeather(memberId, errorCallback) {
+   try {
+   const token = await this.getTokenOrThrow("Only authenticated users can get weather data.");
+   const response = await this.axiosClient.get(`weather/${memberId}`, {
+   headers: {
+                   Authorization: `Bearer ${token}`
+               }
+        });
+        return response.data;
+   } catch (error) {
+           this.handleError(error, errorCallback);
+       }
+   }
 }

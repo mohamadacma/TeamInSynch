@@ -1,19 +1,22 @@
 :root {
-    /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
-    --primary-color: #5D5E5E;
-    --secondary-color: #ffffff;
+    --primary-color: #333;
+    --secondary-color: #FFF1E6;
     --tertiary-color: #1E90FF;
     --input-border-color: #ccc;
     --input-focus-border-color: #1E90FF;
     --error-color: #EE3A23;
     --input-bg-color: #f7f7f7;
-     --input-text-color: #333;
-
-
-    --input-border-color: #ccc;
-    --input-focus-border-color: #5D5E5E;
-    --input-bg-color: #f7f7f7;
     --input-text-color: #333;
+    --button-bg-color: #5D5E5E;
+    --button-text-color: #ffffff;
+    --button-hover-bg-color: #444;
+    --button-hover-text-color: #ffffff;
+}
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .background {
@@ -23,44 +26,71 @@
     font-family: "Helvetica Neue",Helvetica,sans-serif;
 }
 
-
-
-body {
-    margin: 0;
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
-    background-color: #FDA50F;
-    background-size: cover;
-    background-position: center;
-    color: var(--primary-color);
-}
 .header {
-    /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+    background-color: rgba(10, 37, 64, 0.8);
+    color: var(--secondary-color);
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary-color);
-     margin: 30px auto;
-
-    color: var(--secondary-color);
-    padding: 10px 20px;
 }
 
-.button {
-  background-color: var(--tertiary-color);
-  border: none;
-  color: var(--secondary-color);
-  padding: 6px 8px 4px 8px;
-  text-align: center;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 4px;
-  cursor: pointer;
-
-}
-
-.button-group {
+.header-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-size: 24px;
+    margin: 0;
+}
+
+
+.hero {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 50px 20px;
+    text-align: center;
+}
+.hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.button:hover {
+    background-color: var(--button-hover-bg-color);
+    color: var(--button-hover-text-color);
+}
+
+
+.results {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
 }
 
 
@@ -145,7 +175,7 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CS
     display: none;
 }
 
-/* table styles */ 
+/* table styles */
 
 th, td {
     padding: 15px;

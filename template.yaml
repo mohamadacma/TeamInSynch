@@ -319,10 +319,8 @@ Resources:
         TeamInSynchService:
           Type: Api
           Properties:
-            Path: /v1/forecast
+            Path: /weather/{id}
             Method: get
-            Auth:
-              Authorizer: 'NONE'
 
   GetNewsLambda:
     Type: AWS::Serverless::Function

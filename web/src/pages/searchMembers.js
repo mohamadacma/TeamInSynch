@@ -170,6 +170,8 @@ class SearchMembers extends BindingClass {
                             alert('Failed to delete member: ${error.message}');
                         }
                 }
+            } else if (action === 'show weather') {
+                     window.location.href = `weather.html?id=${memberId}`;
             }
         };
 

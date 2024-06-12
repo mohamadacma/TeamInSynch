@@ -61,17 +61,6 @@ import java.util.stream.Collectors;
         return weatherCodeDescriptions.getOrDefault(weatherCode, "unavailable weather code");
     }
     /**
-     * Convert weather codes to descriptions.
-     *
-     * @param weatherCodes list of weather codes to be converted.
-     * @return list of weather descriptions.
-     */
-    private List<String> convertWeatherCodesToDescriptions(List<Integer> weatherCodes) {
-        return weatherCodes.stream()
-                .map(this::getDescriptionFromWeatherCode)
-                .collect(Collectors.toList());
-    }
-    /**
      * Converts raw weather data into a {@link WeatherModel} representation.
      *
      * @param latitude the latitude of the location.
@@ -82,15 +71,14 @@ import java.util.stream.Collectors;
      * @param minTemperatures a list of minimum temperatures for each time.
      * @return the converted {@link WeatherModel} containing weather descriptions and temperatures.
      */
-    public WeatherModel toWeatherModel(Double latitude, Double longitude, List<String> times, List<Integer> weatherCodes, List<Double> maxTemperatures, List<Double> minTemperatures) {
-        List<String> weatherDescriptions = convertWeatherCodesToDescriptions(weatherCodes);
+    public WeatherModel toWeatherModel(Double latitude, Double longitude, String time, String weatherDescription, Double maxTemperature, Double minTemperature) {
         return new WeatherModel.Builder()
                 .withLatitude(latitude)
                 .withLongitude(longitude)
-                .withTimes(times)
-                .withWeatherDescriptions(weatherDescriptions)
-                .withMaxTemperatures(maxTemperatures)
-                .withMinTemperatures(minTemperatures)
+                .withTime(time)
+                .withWeatherDescription(weatherDescription)
+                .withMaxTemperature(maxTemperature)
+                .withMinTemperature(minTemperature)
                 .build();
     }
     /**

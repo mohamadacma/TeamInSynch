@@ -2,9 +2,7 @@ package com.nashss.se.teaminsynchservice.lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.nashss.se.teaminsynchservice.activity.requests.DeleteMemberRequest;
 import com.nashss.se.teaminsynchservice.activity.requests.GetMemberRequest;
-import com.nashss.se.teaminsynchservice.activity.results.DeleteMemberResult;
 import com.nashss.se.teaminsynchservice.activity.results.GetMemberResult;
 
 public class GetMemberLambda

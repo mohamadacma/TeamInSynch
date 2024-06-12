@@ -44,4 +44,10 @@ public interface ServiceComponent {
      * @return GetMemberActivity
      */
     GetMemberActivity provideGetMemberActivity();
+    /**
+     * Provides the relevant activity.
+     *
+     * @return GetWeatherActivity
+     */
+    GetWeatherActivity provideGetWeatherActivity();
 }

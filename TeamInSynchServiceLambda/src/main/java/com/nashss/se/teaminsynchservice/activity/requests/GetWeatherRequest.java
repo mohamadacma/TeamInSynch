@@ -3,12 +3,12 @@ package com.nashss.se.teaminsynchservice.activity.requests;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-@JsonDeserialize(builder = GetNewsRequest.Builder.class)
-    public class GetNewsRequest {
+    @JsonDeserialize(builder = GetWeatherRequest.Builder.class)
+    public class GetWeatherRequest {
         private final String memberId;
         private final String managerEmail;
 
-        public GetNewsRequest(String memberId, String managerEmail) {
+        public GetWeatherRequest(String memberId, String managerEmail) {
 
             this.memberId = memberId;
             this.managerEmail = managerEmail;
@@ -16,14 +16,18 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
         public String getMemberId() {
             return memberId;
         }
+        public String getManagerEmail() {
+            return managerEmail;
+        }
         @Override
         public String toString() {
-            return "DeleteMemberRequest{" +
+            return "FetchWeatherRequest{" +
                     "memberId='" + memberId + '\'' +
+                    ", managerEmail='" + managerEmail + '\'' +
                     '}';
         }
         public static Builder builder() {
-            return new GetNewsRequest.Builder();
+            return new GetWeatherRequest.Builder();
         }
         @JsonPOJOBuilder
         public static class Builder {
@@ -40,9 +44,8 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
                 return this;
             }
 
-
-            public GetNewsRequest build() {
-                return new GetNewsRequest(memberId, managerEmail);
+            public GetWeatherRequest build() {
+                return new GetWeatherRequest(memberId, managerEmail);
             }
         }
     }

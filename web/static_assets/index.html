@@ -7,26 +7,35 @@
 </head>
 
 <body class="background">
-    <header class="header" id="header"></header>
-    <div class="card">
-        <h2>Search Members</h2>
-        <form class="card-content" id="search-members-form">
-            <p class="form-field">
-                <label>Search by Team, city, or Member Name</label>
-                <input type="text" class="validated-field" id="search-criteria" placeholder="team Apha,Seattle, Rachel" autofocus>
-                <sub>Search is case-sensitive</sub>
+    <header class="header" id="header">
+        <div class="header-container">
+            <h1 class="logo">Teams Synchronizer</h1>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Search Members</h2>
+                <form class="search-form" id="search-members-form">
+                    <p class="form-field">
+                    <label for="search-criteria">Search Teams</label>
+                    <input type="text" class="validated-field" id="search-criteria" placeholder="team Apha,Seattle, Rachel" autofocus>
+                    <sub>Search is case-sensitive</sub>
             </p>
         </form>
-        <p class="button-group">
+        <div class="button-group">
             <a href="#" class="button" id="search-btn">Search</a>
             <a href="addMember.html" class="button">Add Member</a>
-        </p>
-    </div>
-    <div class="card hidden" id='search-results-container'>
-        <h3>Results for <span id="search-criteria-display"></span></h3>
+        </div>
+            </div>
+        </section>
+        <section class="results hidden" id="search-results-container">
+            <h3>Results for <span id="search-criteria-display"></span></h3>
         <div id="search-results-display">
         </div>
-    </div>
+        </section>
+    </main>
 </body>
 
 </html>
