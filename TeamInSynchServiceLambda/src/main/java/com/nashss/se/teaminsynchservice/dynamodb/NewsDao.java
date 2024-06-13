@@ -25,6 +25,7 @@ public class NewsDao {
 
     public GetNewsResult getNews(FetchNewsRequest request) {
         String newsApiUrl = buildNewsApiUrl(request);
+        System.out.println(newsApiUrl);
         JsonNode newsResponse = makeApiCall(newsApiUrl);
         NewsModel newsModel = parseNewsResponse(newsResponse);
         return GetNewsResult.builder()
@@ -37,7 +38,6 @@ public class NewsDao {
             URL url = new URL(urlString);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("x-api-key", apiKey);
 
             int responseCode = connection.getResponseCode();
             System.out.println("Response Code: " + responseCode);
@@ -68,6 +68,7 @@ public class NewsDao {
         if (TeamInSynchServiceUtils.isValidString(request.getLocationFilter())) {
             urlBuilder.append(request.getLocationFilter());
         }
+            urlBuilder.append("&api-key=").append(request.getApiKey());
             return urlBuilder.toString();
 
     }

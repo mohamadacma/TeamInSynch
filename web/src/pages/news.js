@@ -25,7 +25,9 @@ import DataStore from "../util/DataStore";
     document.getElementById('news-results-container').innerText = "Loading...";
     try {
     const newsData = await this.client.getNews(memberId);
+     console.log('Received news data:', newsData);
     this.dataStore.set('newsData', newsData);
+    console.log(newsData);
      } catch (error) {
      console.error('Failed to load news data:', error);
      document.getElementById('news-results-container').innerText = 'Failed to load news data.';
@@ -46,27 +48,79 @@ import DataStore from "../util/DataStore";
    */
    addNewsToPage() {
    const newsData = this.dataStore.get('newsData');
-   if (newsData == null) {
-    return;
-   }
+    if (!newsData || !newsData.newsModel) {
+           console.error('Invalid news data:', newsData);
+           document.getElementById('news-results-container').innerText = 'Failed to load news data.';
+           return;
+       }
 
-   const newsResultsContainer = document.getElementById('news-results-container');
-   newsResultsContainer.innerHTML = '';
+      const newsResultsContainer = document.getElementById('news-results-container');
+      newsResultsContainer.innerHTML = '';
 
-   newsData.news.headlines.forEach((headline, index) => {
-     const newsItem = `
-       <div class="news-item">
-       <h3>${headline}</h3>
-       <p>Source: ${newsData.news.sources[index]}</p>
-       <p><a href="${newsData.news.URLs[index]}" target="_blank">Read more</a></p>
-       <p>Published Date: ${newsData.news.publishDates[index]}</p>
-       <img src="${newsData.news.images[index]}" alt="News Image">
-       </div>
-       `;
-   newsResultsContainer.innerHTML += newsItem;
-   });
+      // access the sources (us,fr,ca..)
+          const englishIndices = newsData.newsModel.sources
+      //create a map that returns an array of null values for non-english sources and index for en sources
+              .map((source, index) => (source === 'us' ? index : null))
+       // another array created here without the null values from the map array
+              .filter(index => index !== null);
+
+      // Display headlines
+      englishIndices.forEach((index) => {
+       const headline = newsData.newsModel.headlines[index];
+          const newsItem = `
+              <div class="news-item">
+                  <h3>${headline}</h3>
+              </div>
+          `;
+          newsResultsContainer.innerHTML += newsItem;
+      });
+
+      // Display sources
+      englishIndices.forEach((index) => {
+                  const source = newsData.newsModel.sources[index];
+                  const newsItem = `
+                      <div class="news-item">
+                          <p>Source: ${source}</p>
+                      </div>
+                  `;
+                  newsResultsContainer.innerHTML += newsItem;
+              });
+
+      // Display URLs
+        englishIndices.forEach((index) => {
+            const url = newsData.newsModel.urls[index];
+            const newsItem = `
+                <div class="news-item">
+                    <p><a href="${url}" target="_blank">Read more</a></p>
+                </div>
+            `;
+            newsResultsContainer.innerHTML += newsItem;
+        });
+
+      // Display publish dates
+         englishIndices.forEach((index) => {
+             const publishDate = newsData.newsModel.publishDates[index];
+             const newsItem = `
+                 <div class="news-item">
+                     <p>Published Date: ${publishDate}</p>
+                 </div>
+             `;
+             newsResultsContainer.innerHTML += newsItem;
+         });
+
+      // Display images
+         englishIndices.forEach((index) => {
+             const image = newsData.newsModel.images[index];
+             const newsItem = `
+                 <div class="news-item">
+                     <img src="${image}" alt="News Image">
+                 </div>
+             `;
+             newsResultsContainer.innerHTML += newsItem;
+         });
+  }
  }
-}
+
 
    /**
    * Main method to run when the page contents have loaded.

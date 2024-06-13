@@ -79,32 +79,22 @@ public class GetNewsActivity {
         GetGeoCodingResult geoCodingResult = weatherDao.getGeoCoding(geoCodingRequest);
        //retrieve apiKey using secret manager
         String apiKey = APIUtils.getSecret();
-        try{
-            String newsJSON =  get("https://api.worldnewsapi.com/search-news?location-filter="+geoCodingResult.getLongitude()+","+geoCodingResult.getLatitude()+","+"20"+"&api_key="+apiKey);
-            log.info("Received newsJSON {}", newsJSON);
-        }
-        catch (IOException e){
-            log.error("Received Commerce error {}", e);
-            log.info("Received GetNewsRequest {}", getNewsRequest);
-        }
-        System.out.println(apiKey);
+        // Build location filter
+        String locationFilter = String.format("?location-filter=%f,%f,10",
+                geoCodingResult.getLatitude(),
+                geoCodingResult.getLongitude());
+
         // Fetch news data using geocoding data
         FetchNewsRequest fetchNewsRequest = FetchNewsRequest.builder()
-                .withLocationFilter("?location-filter="+ geoCodingResult.getLatitude()+","+ geoCodingResult.getLongitude()+","+ 10)
+                .withLocationFilter(locationFilter)
                 .withApiKey(apiKey)
                 .build();
 
         // Return the weather result
         return newsDao.getNews(fetchNewsRequest);
     }
-    public String get(String url) throws IOException {
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
-        }
-    }
 }
+
+
 
 
