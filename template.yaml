@@ -339,7 +339,7 @@ Resources:
         TeamInSynchService:
           Type: Api
           Properties:
-            Path: /search-news
+            Path: /news/{id}
             Method: get
 
   MembersTable:

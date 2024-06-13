@@ -7,9 +7,9 @@ import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRespon
 
 public  class APIUtils {
 
-    public static String getSecret(String secretName) {
+    public static String getSecret() {
 
-        // String secretName = "commerce_gov_key";
+        String secretName = "newsApiKey";
         Region region = Region.of("us-east-2");
 
         // Create a Secrets Manager client
@@ -31,8 +31,6 @@ public  class APIUtils {
             throw e;
         }
 
-        String secret = getSecretValueResponse.secretString();
-
-        return secret;
+        return getSecretValueResponse.secretString();
     }
 }

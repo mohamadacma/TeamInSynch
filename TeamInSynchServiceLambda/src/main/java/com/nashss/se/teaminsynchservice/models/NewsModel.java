@@ -4,23 +4,18 @@ import java.util.List;
 import java.util.Objects;
 
 public class NewsModel {
-    private final String city;
     private final List<String> headlines;
     private final List<String> sources;
     private final List<String> URLs;
     private final List<String> images;
     private final List<String> publishDates;
 
-    private NewsModel(String city, List<String> headlines, List<String> sources, List<String> URLs, List<String> images, List<String> publishDates) {
-        this.city = city;
+    private NewsModel( List<String> headlines, List<String> sources, List<String> URLs, List<String> images, List<String> publishDates) {
         this.headlines = headlines;
         this.sources = sources;
         this.URLs = URLs;
         this.images = images;
         this.publishDates = publishDates;
-    }
-    public String getCity() {
-        return city;
     }
 
     public List<String> getHeadlines() {
@@ -43,8 +38,7 @@ public class NewsModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NewsModel newsModel = (NewsModel) o;
-        return Objects.equals(city, newsModel.city) &&
-                Objects.equals(headlines, newsModel.headlines) &&
+        return  Objects.equals(headlines, newsModel.headlines) &&
                 Objects.equals(sources, newsModel.sources) &&
                 Objects.equals(URLs, newsModel.URLs) &&
                 Objects.equals(images, newsModel.images) &&
@@ -53,21 +47,16 @@ public class NewsModel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(city, headlines, sources, URLs,images,publishDates);
+        return Objects.hash(headlines, sources, URLs,images,publishDates);
     }
 
     public static class Builder {
-        private String city;
         private List<String> headlines;
         private List<String> sources;
         private List<String> URLs;
         private List<String> images;
         private List<String> publishDates;
 
-        public Builder withCity(String city) {
-            this.city = city;
-            return this;
-        }
 
         public Builder withHeadlines(List<String> headlines) {
             this.headlines = headlines;
@@ -94,7 +83,7 @@ public class NewsModel {
         }
 
         public NewsModel build() {
-            return new NewsModel(city, headlines, sources, URLs,images,publishDates);
+            return new NewsModel( headlines, sources, URLs,images,publishDates);
         }
     }
 }
