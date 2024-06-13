@@ -2,6 +2,7 @@ import TeamInSynchClient from '../api/teamInSynchClient';
 import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
+import Authenticator from '../api/authenticator';
 /**
  * Logic needed for the search Members page of the website.
  */
@@ -23,9 +24,10 @@ const EMPTY_DATASTORE_STATE = {
 class SearchMembers extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'searchMembers', 'displaySearchResults', 'getHTMLForSearchResults'], this);
+        this.bindClassMethods(['mount', 'searchMembers', 'displaySearchResults', 'getHTMLForSearchResults', 'handleLogin', 'handleLogout'], this);
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
         this.header = new Header(this.dataStore);
+        this.authenticator = new Authenticator();
         this.dataStore.addChangeListener(this.displaySearchResults);
         console.log("searchMembers constructor");
     }
@@ -37,6 +39,9 @@ class SearchMembers extends BindingClass {
         // Wire up the form's 'submit' event and the button's 'click' event to the search method.
         document.getElementById('search-members-form').addEventListener('submit', this.searchMembers);
         document.getElementById('search-btn').addEventListener('click', this.searchMembers);
+        document.getElementById('login-btn').addEventListener('click', this.handleLogin);
+        document.getElementById('logout-btn').addEventListener('click', this.handleLogout);
+
         this.header.addHeaderToPage();
         this.client = new TeamInSynchClient();
         const currUser = await this.client.getIdentity();
@@ -45,6 +50,23 @@ class SearchMembers extends BindingClass {
                     this.client.login();
                 }
     }
+
+        /**
+         * Handle the login button click.
+         */
+         async handleLogin(evt) {
+                 evt.preventDefault();
+                 await this.authenticator.login();
+             }
+
+             /**
+                  * Handle the logout button click.
+                  */
+                 async handleLogout(evt) {
+                     evt.preventDefault();
+                     await this.authenticator.logout();
+                     window.location.reload();
+                 }
 
     /**
      * Uses the client to perform the search, 
