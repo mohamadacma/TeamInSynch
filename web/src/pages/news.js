@@ -61,63 +61,28 @@ import DataStore from "../util/DataStore";
           const englishIndices = newsData.newsModel.sources
       //create a map that returns an array of null values for non-english sources and index for en sources
               .map((source, index) => (source === 'us' ? index : null))
-       // another array created here without the null values from the map array
+       // filter the above array of null values
               .filter(index => index !== null);
 
       // Display headlines
       englishIndices.forEach((index) => {
-       const headline = newsData.newsModel.headlines[index];
+      const headline = newsData.newsModel.headlines[index];
+      const source = newsData.newsModel.sources[index];
+      const url = newsData.newsModel.urls[index];
+      const publishDate = newsData.newsModel.publishDates[index];
+      const image = newsData.newsModel.images[index];
+
           const newsItem = `
               <div class="news-item">
-                  <h3>${headline}</h3>
+                 <h3>${headline}</h3>
+                 <p>Source: ${source}</p>
+                 <p><a href="${url}" target="_blank">Read more</a></p>
+                 <p>Published Date: ${publishDate}</p>
+                 <img src="${image}" alt="News Image">
               </div>
           `;
           newsResultsContainer.innerHTML += newsItem;
       });
-
-      // Display sources
-      englishIndices.forEach((index) => {
-                  const source = newsData.newsModel.sources[index];
-                  const newsItem = `
-                      <div class="news-item">
-                          <p>Source: ${source}</p>
-                      </div>
-                  `;
-                  newsResultsContainer.innerHTML += newsItem;
-              });
-
-      // Display URLs
-        englishIndices.forEach((index) => {
-            const url = newsData.newsModel.urls[index];
-            const newsItem = `
-                <div class="news-item">
-                    <p><a href="${url}" target="_blank">Read more</a></p>
-                </div>
-            `;
-            newsResultsContainer.innerHTML += newsItem;
-        });
-
-      // Display publish dates
-         englishIndices.forEach((index) => {
-             const publishDate = newsData.newsModel.publishDates[index];
-             const newsItem = `
-                 <div class="news-item">
-                     <p>Published Date: ${publishDate}</p>
-                 </div>
-             `;
-             newsResultsContainer.innerHTML += newsItem;
-         });
-
-      // Display images
-         englishIndices.forEach((index) => {
-             const image = newsData.newsModel.images[index];
-             const newsItem = `
-                 <div class="news-item">
-                     <img src="${image}" alt="News Image">
-                 </div>
-             `;
-             newsResultsContainer.innerHTML += newsItem;
-         });
   }
  }
 
