@@ -11,28 +11,35 @@
     --button-text-color: #ffffff;
     --button-hover-bg-color: #444;
     --button-hover-text-color: #ffffff;
+    --font-family: 'Arial', sans-serif;
+    --header-font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    --logo-font-size: 28px;
+    --header-font-size: 20px;
+    --footer-bg-color: #1E1E1E;
+    --footer-text-color: #FFF1E6;
+
 }
 body {
     margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: var(--font-family);
     background-color: var(--secondary-color);
     color: var(--primary-color);
 }
 
 .background {
-    background-color: #FFF1E6;
+    background-color: var(--secondary-color);
     margin: 0;
     counter-reset: section;
-    font-family: "Helvetica Neue",Helvetica,sans-serif;
 }
 
 .header {
     background-color: rgba(10, 37, 64, 0.8);
     color: var(--secondary-color);
-    padding: 20px;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: var(--header-font-family);
 }
 
 .header-container {
@@ -43,13 +50,39 @@ body {
 }
 
 .logo {
-    font-size: 24px;
+    font-size: var(--logo-font-size);
     margin: 0;
+}
+.nav {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: var(--tertiary-color);
+}
+.button-logout {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+    font-size: 16px;
+}
+
+.button-logout:hover {
+    text-decoration: underline;
 }
 
 
 .hero {
-    background-color: var(--primary-color);
+    background: linear-gradient(to right, #333, #1E90FF);
     color: var(--secondary-color);
     padding: 50px 20px;
     text-align: center;
@@ -58,11 +91,17 @@ body {
     max-width: 600px;
     margin: 0 auto;
 }
+h2 {
+    font-family: var(--header-font-family);
+    font-size: var(--header-font-size);
+    margin-bottom: 20px;
+}
+
 .search-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .button-group {
     display: flex;
@@ -83,7 +122,6 @@ body {
     color: var(--button-hover-text-color);
 }
 
-
 .results {
     padding: 20px;
     max-width: 800px;
@@ -92,7 +130,12 @@ body {
     border: 1px solid var(--input-border-color);
     border-radius: 4px;
 }
-
+.footer {
+    background-color: var(--footer-bg-color);
+    color: var(--footer-text-color);
+    padding: 20px;
+    text-align: center;
+}
 
 .header_home {
     font-size: 36px;
@@ -131,45 +174,11 @@ body {
     flex-direction: column;
 }
 
-.tags {
-    display: flex;
-    flex-direction: row;
-}
-
-.tag {
-    font-size: 12px;
-    margin: 0 10px;
-    padding: 4px 8px;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    position: relative;
-    border-radius: 16px;
-}
-
-.song {
-    padding: 2px;
-    display: flex;
-}
-
-.song .title {
-    flex: 20%;
-}
-
-.song .album {
-    flex: 80%;
-}
-
 /*
 Flexbox on a lists removes the numbers. We use a counter here to add them back.
 https://stackoverflow.com/a/34316093
 https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters
 */
-.song:before {
-    counter-increment: section;
-    content: counter(section) ".";
-    position: absolute;
-    margin-left: -40px;
-}
 
 .hidden {
     display: none;

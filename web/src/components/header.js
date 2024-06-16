@@ -9,8 +9,7 @@ export default class Header extends BindingClass {
         super();
 
         const methodsToBind = [
-            'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader',
-            'createLoginButton', 'createLoginButton', 'createLogoutButton'
+            'addHeaderToPage', 'createSiteTitle', 'createUserInfoForHeader'
         ];
         this.bindClassMethods(methodsToBind, this);
 
@@ -46,13 +45,16 @@ export default class Header extends BindingClass {
 
     createUserInfoForHeader(currentUser) {
         const userInfo = document.createElement('div');
-        userInfo.classList.add('user');
-
-        const childContent = currentUser
-            ? this.createLogoutButton(currentUser)
-            : this.createLoginButton();
-
-        userInfo.appendChild(childContent);
+        userInfo.classList.add('user-info');
+        if (currentUser) {
+                    const firstName = currentUser.name.split(' ')[0];
+                    userInfo.setAttribute('data-username', firstName);
+                    const logoutButton = this.createLogoutButton(firstName);
+                    userInfo.appendChild(logoutButton);
+                } else {
+                    const loginButton = this.createLoginButton();
+                    userInfo.appendChild(loginButton);
+                }
 
         return userInfo;
     }
@@ -61,7 +63,7 @@ export default class Header extends BindingClass {
         return this.createButton('Login', this.client.login);
     }
 
-    createLogoutButton(currentUser) {
+    createLogoutButton(firstName) {
         return this.createButton(`Logout: ${currentUser.name}`, this.client.logout);
                 button.classList.add('logout-btn');
                 return button;

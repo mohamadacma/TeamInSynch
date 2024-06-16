@@ -10,18 +10,26 @@
     <header class="header" id="header">
         <div class="header-container">
             <h1 class="logo">Teams Synchronizer</h1>
+            <nav class="nav">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">About</a>
+                <a href="#" class="nav-link">Contact</a>
+                <a href="#" id="login-btn" class="nav-link" style="display: none;">Login</a>
+                <a href="#" id="logout-btn" class="nav-link">Logout</a>
+            </nav>
+
         </div>
     </header>
 
     <main class="main-content">
         <section class="hero">
             <div class="hero-content">
-                <h2>Search Members</h2>
+                <h2>Connect with your team</h2>
                 <form class="search-form" id="search-members-form">
                     <p class="form-field">
-                    <label for="search-criteria">Search Teams</label>
-                    <input type="text" class="validated-field" id="search-criteria" placeholder="team Apha,Seattle, Rachel" autofocus>
-                    <sub>Search is case-sensitive</sub>
+                    <label for="search-criteria">Search</label>
+                    <input type="text" class="validated-field" id="search-criteria" placeholder="team Alpha,Seattle, Rachel" autofocus>
+
             </p>
         </form>
         <div class="button-group">
@@ -36,6 +44,10 @@
         </div>
         </section>
     </main>
+    <footer class="footer">
+        <p>&copy; 2024 Teams Synchronizer. All rights reserved.</p>
+    </footer>
 </body>
+
 
 </html>
