@@ -3,36 +3,17 @@
 package com.nashss.se.teaminsynchservice.activity.newsRequest;
 
     public class FetchNewsRequest {
-        private final double latitude;
-        private final double longitude;
-        private final int radius;
-        private final int number;
+        private final String locationFilter;
         private final String apiKey;
 
-        public FetchNewsRequest(double latitude, double longitude, int radius, int number, String apiKey) {
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.radius = radius;
-            this.number = number;
+        public FetchNewsRequest(String locationFilter, String apiKey) {
+            this.locationFilter = locationFilter;
             this.apiKey = apiKey;
         }
 
-        public double getLatitude() {
-            return latitude;
+        public String getLocationFilter() {
+            return locationFilter;
         }
-
-        public double getLongitude() {
-            return longitude;
-        }
-
-        public int getRadius() {
-            return radius;
-        }
-
-        public int getNumber() {
-            return number;
-        }
-
         public String getApiKey() {
             return apiKey;
         }
@@ -40,10 +21,7 @@ package com.nashss.se.teaminsynchservice.activity.newsRequest;
         @Override
         public String toString() {
             return "GetNewsRequest{" +
-                    "latitude=" + latitude +
-                    ", longitude=" + longitude +
-                    ", radius=" + radius +
-                    ", number=" + number +
+                    "locationFilter=" + locationFilter +
                     ", apiKey='" + apiKey + '\'' +
                     '}';
         }
@@ -54,29 +32,12 @@ package com.nashss.se.teaminsynchservice.activity.newsRequest;
         }
 
         public static class Builder {
-            private double latitude;
-            private double longitude;
-            private int radius;
-            private int number;
+
+            private String locationFilter;
             private String apiKey;
 
-            public Builder withLatitude(double latitude) {
-                this.latitude = latitude;
-                return this;
-            }
-
-            public Builder withLongitude(double longitude) {
-                this.longitude = longitude;
-                return this;
-            }
-
-            public Builder withRadius(int radius) {
-                this.radius = radius;
-                return this;
-            }
-
-            public Builder withNumber(int number) {
-                this.number = number;
+            public Builder withLocationFilter(String locationFilter) {
+                this.locationFilter = locationFilter;
                 return this;
             }
 
@@ -86,7 +47,7 @@ package com.nashss.se.teaminsynchservice.activity.newsRequest;
             }
 
             public FetchNewsRequest build() {
-                return new FetchNewsRequest(latitude, longitude, radius, number, apiKey);
+                return new FetchNewsRequest(locationFilter, apiKey);
             }
         }
     }

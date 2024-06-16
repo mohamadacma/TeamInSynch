@@ -194,7 +194,9 @@ class SearchMembers extends BindingClass {
                 }
             } else if (action === 'show weather') {
                      window.location.href = `weather.html?id=${memberId}`;
-            }
+            } else if (action === 'show news') {
+                              window.location.href = `news.html?id=${memberId}`;
+                          }
         };
 
         /**
