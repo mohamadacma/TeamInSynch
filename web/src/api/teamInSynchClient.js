@@ -229,11 +229,18 @@ export default class TeamInSynchClient extends BindingClass {
             errorCallback(error);
         }
     }
-   async getWeather(memberId, errorCallback) {
-   try {
-   const token = await this.getTokenOrThrow("Only authenticated users can get weather data.");
-   const response = await this.axiosClient.get(`weather/${memberId}`, {
-   headers: {
+
+      /**
+        * Get weather data for a member by ID.
+        * @param {String} memberId The ID of the member to fetch weather data for.
+        * @param {Function} errorCallback (Optional) A function to execute if the call fails.
+        * @returns {Object} The weather data.
+        */
+    async getWeather(memberId, errorCallback) {
+    try {
+    const token = await this.getTokenOrThrow("Only authenticated users can get weather data.");
+    const response = await this.axiosClient.get(`weather/${memberId}`, {
+    headers: {
                    Authorization: `Bearer ${token}`
                }
         });
@@ -242,4 +249,24 @@ export default class TeamInSynchClient extends BindingClass {
            this.handleError(error, errorCallback);
        }
    }
-}
+
+      /**
+        * Get news data for a member by ID.
+        * @param {String} memberId The ID of the member to fetch news data for.
+        * @param {Function} errorCallback (Optional) A function to execute if the call fails.
+        * @returns {Object} The news data.
+        */
+   async getNews(memberId, errorCallback) {
+   try {
+   const token = await this.getTokenOrThrow("Only authenticated users can get news data");
+   const response = await this.axiosClient.get(`news/${memberId}`, {
+      headers: {
+                       Authorization: `Bearer ${token}`
+                   }
+              });
+              return response.data;
+            } catch (error) {
+                    this.handleError(error, errorCallback);
+                 }
+        }
+    }

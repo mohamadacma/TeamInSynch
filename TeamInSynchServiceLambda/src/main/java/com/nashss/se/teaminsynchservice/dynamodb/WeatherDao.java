@@ -19,7 +19,6 @@ import java.net.URL;
 public class WeatherDao {
     private static final String GEOCODING_API_BASE_URL = "https://geocoding-api.open-meteo.com/v1/search";
     private static final String WEATHER_API_BASE_URL = "https://api.open-meteo.com/v1/forecast";
-    private static final String DAILY = "weather_code,temperature_2m_max,temperature_2m_min";
     @Inject
     public WeatherDao () {};
 
