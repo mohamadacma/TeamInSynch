@@ -69,7 +69,7 @@ class SearchMembers extends BindingClass {
                  }
 
     /**
-     * Uses the client to perform the search, 
+     * Uses the client to perform the search,
      * then updates the datastore with the criteria and results.
      * @param evt The "event" object representing the user-initiated event that triggered this method.
      */
