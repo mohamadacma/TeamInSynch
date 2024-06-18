@@ -40,7 +40,7 @@ public class MemberDaoTest {
     }
 
     @Test
-    public void getMember_withInvalidMemberId_throwsMemberNotFOundException() {
+    public void getMember_withInvalidMemberId_throwsMemberNotFoundException() {
         // GIVEN
         String invalidMemberId = "invalidId";
 
