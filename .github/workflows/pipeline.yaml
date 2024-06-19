@@ -9,25 +9,25 @@ on:
 env:
 
   # STUDENTS: Set these environment variables 
-  API_BASE_URL: https://g71oax7ani.execute-api.us-east-2.amazonaws.com/Prod/
-  COGNITO_DOMAIN: project-team-in-synch-mohamad-ahmad
-  COGNITO_REDIRECT_SIGNIN: https://d3eojfl4jgoswv.cloudfront.net
-  COGNITO_REDIRECT_SIGNOUT: https://d3eojfl4jgoswv.cloudfront.net
+  API_BASE_URL: https://foa2w2mq1a.execute-api.us-east-2.amazonaws.com/Prod/
+  COGNITO_DOMAIN: project-team-in-synchv2-mohamad-ahmad
+  COGNITO_REDIRECT_SIGNIN: http://localhost:8000
+  COGNITO_REDIRECT_SIGNOUT: http://localhost:8000
 
   COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}
   COGNITO_USER_POOL_CLIENT_ID: ${{ secrets.COGNITO_USER_POOL_CLIENT_ID }}
 
   GH_PACKAGE_REG_READ_USER: ${{ secrets.GH_PACKAGE_REG_READ_USER }}
   GH_PACKAGE_REG_READ_PASS: ${{ secrets.GH_PACKAGE_REG_READ_PASS }}
-
+  
   PIPELINE_USER_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   PIPELINE_USER_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   SAM_TEMPLATE: template.yaml
 
-  STACK_NAME: TeamInSynchService
-  PIPELINE_EXECUTION_ROLE: arn:aws:iam::730335289613:role/aws-sam-cli-managed-ServiceSt-PipelineExecutionRole-rfMuFeucO8LX
-  CLOUDFORMATION_EXECUTION_ROLE: arn:aws:iam::730335289613:role/aws-sam-cli-managed-Servi-CloudFormationExecutionRo-QT8dqksTA4UO
-  ARTIFACTS_BUCKET: aws-sam-cli-managed-servicestage-p-artifactsbucket-rarr6ir04iiy
+  STACK_NAME: TeamInSyncServiceV2
+  PIPELINE_EXECUTION_ROLE: arn:aws:iam::058264155829:role/aws-sam-cli-managed-ServiceSt-PipelineExecutionRole-wV43hGdUS9T5
+  CLOUDFORMATION_EXECUTION_ROLE: arn:aws:iam::058264155829:role/aws-sam-cli-managed-Servi-CloudFormationExecutionRo-2XGfZ3nHCZls
+  ARTIFACTS_BUCKET: aws-sam-cli-managed-servicestage-p-artifactsbucket-ap7g2ro5s1zm
   REGION: us-east-2
 
 jobs:
