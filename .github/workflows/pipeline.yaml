@@ -11,8 +11,8 @@ env:
   # STUDENTS: Set these environment variables 
   API_BASE_URL: https://foa2w2mq1a.execute-api.us-east-2.amazonaws.com/Prod/
   COGNITO_DOMAIN: project-team-in-synchv2-mohamad-ahmad
-  COGNITO_REDIRECT_SIGNIN: http://localhost:8000
-  COGNITO_REDIRECT_SIGNOUT: http://localhost:8000
+  COGNITO_REDIRECT_SIGNIN: https://d2qcetd7rqhjj0.cloudfront.net
+  COGNITO_REDIRECT_SIGNOUT: https://d2qcetd7rqhjj0.cloudfront.net
 
   COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}
   COGNITO_USER_POOL_CLIENT_ID: ${{ secrets.COGNITO_USER_POOL_CLIENT_ID }}

@@ -13,7 +13,7 @@ public  class APIUtils {
 
     public static String getSecret() {
 
-        String secretName = "newsApiKey";
+        String secretName = "newsApiKeyV2";
         Region region = Region.of("us-east-2");
 
         // Create a Secrets Manager client
