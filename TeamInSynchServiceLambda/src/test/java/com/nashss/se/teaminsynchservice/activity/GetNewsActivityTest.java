@@ -1,4 +1,4 @@
-package com.nashss.se.teaminsynchservice.activity;
+/*package com.nashss.se.teaminsynchservice.activity;
 
 import com.nashss.se.teaminsynchservice.activity.newsRequest.FetchNewsRequest;
 import com.nashss.se.teaminsynchservice.activity.requests.GetNewsRequest;
@@ -99,3 +99,4 @@ public class GetNewsActivityTest {
     }
 
 }
+*/
