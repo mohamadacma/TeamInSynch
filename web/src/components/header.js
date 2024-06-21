@@ -65,10 +65,10 @@ export default class Header extends BindingClass {
     }
 
     createLogoutButton(firstName) {
-        return this.createButton(`Logout: ${firstName}`, this.client.logout);
-
-
-    }
+            const button = this.createButton(`Logout: ${firstName}`, this.client.logout);
+            button.classList.add('logout-btn');
+            return button;
+        }
 
     createButton(text, clickHandler) {
         const button = document.createElement('a');
