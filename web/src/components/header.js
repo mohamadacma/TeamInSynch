@@ -27,7 +27,8 @@ export default class Header extends BindingClass {
 
         const header = document.getElementById('header');
         header.appendChild(siteTitle);
-        header.appendChild(userInfo);
+        const userInfoContainer = document.querySelector('.user-info-container');
+        userInfoContainer.appendChild(userInfo);
     }
 
     createSiteTitle() {
@@ -48,7 +49,8 @@ export default class Header extends BindingClass {
         userInfo.classList.add('user-info');
 
         if (currentUser) {
-                    const logoutButton = this.createLogoutButton();
+                    const firstName = currentUser.name.split(' ')[0];
+                    const logoutButton = this.createLogoutButton(firstName);
                     userInfo.appendChild(logoutButton);
 
                 } else {
