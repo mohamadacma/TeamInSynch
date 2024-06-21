@@ -46,15 +46,16 @@ export default class Header extends BindingClass {
     createUserInfoForHeader(currentUser) {
         const userInfo = document.createElement('div');
         userInfo.classList.add('user-info');
+
         if (currentUser) {
-                    const firstName = currentUser.name.split(' ')[0];
-                    userInfo.setAttribute('data-username', firstName);
-                    const logoutButton = this.createLogoutButton(firstName);
+                    const logoutButton = this.createLogoutButton();
                     userInfo.appendChild(logoutButton);
+
                 } else {
                     const loginButton = this.createLoginButton();
                     userInfo.appendChild(loginButton);
                 }
+
 
         return userInfo;
     }
@@ -64,10 +65,10 @@ export default class Header extends BindingClass {
     }
 
     createLogoutButton(firstName) {
-            const button = this.createButton(`Logout: ${firstName}`, this.client.logout);
-            button.classList.add('logout-btn');
-            return button;
-        }
+        return this.createButton(`Logout: ${firstName}`, this.client.logout);
+
+
+    }
 
     createButton(text, clickHandler) {
         const button = document.createElement('a');

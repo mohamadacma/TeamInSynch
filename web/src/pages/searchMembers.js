@@ -39,8 +39,8 @@ class SearchMembers extends BindingClass {
         // Wire up the form's 'submit' event and the button's 'click' event to the search method.
         document.getElementById('search-members-form').addEventListener('submit', this.searchMembers);
         document.getElementById('search-btn').addEventListener('click', this.searchMembers);
-        document.getElementById('login-btn').addEventListener('click', this.handleLogin);
-        document.getElementById('logout-btn').addEventListener('click', this.handleLogout);
+
+
 
         this.header.addHeaderToPage();
         this.client = new TeamInSynchClient();
@@ -57,6 +57,7 @@ class SearchMembers extends BindingClass {
          async handleLogin(evt) {
                  evt.preventDefault();
                  await this.authenticator.login();
+                 window.location.reload();
              }
 
              /**
