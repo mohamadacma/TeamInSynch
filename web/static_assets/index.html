@@ -4,48 +4,44 @@
 <head>
     <script type="text/javascript" src="assets/searchMembers.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Home - Teams Synchronizer</title>
 </head>
 
 <body class="background">
-    <header class="header" id="header">
-        <div class="header-container">
-            <h1 class="logo">Teams Synchronizer</h1>
-            <nav class="nav">
-                <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link">About</a>
-                <a href="#" class="nav-link">Contact</a>
-                <div class="user-info-container"></div>
-            </nav>
+<header class="header" id="header">
+    <div class="header-container">
+        <div class="logo">Teams Synchronizer</div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <button class="button-login">Login</button>
+        </nav>
+    </div>
+</header>
+<main class="main-content">
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Connect with your team</h2>
+            <form class="search-form" id="search-members-form">
+                <p class="form-field">
+                    <input type="text" class="validated-field" id="search-criteria" placeholder="team Alpha, Seattle, Rachel" autofocus>
+                </p>
+                <div class="button-group">
+                    <a href="#" class="button" id="search-btn">Search</a>
+                    <a href="addMember.html" class="button">Add Member</a>
+                </div>
+            </form>
         </div>
-    </header>
-
-    <main class="main-content">
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Connect with your team</h2>
-                <form class="search-form" id="search-members-form">
-                    <p class="form-field">
-                    <label for="search-criteria">Search</label>
-                    <input type="text" class="validated-field" id="search-criteria" placeholder="team Alpha,Seattle, Rachel" autofocus>
-
-            </p>
-        </form>
-        <div class="button-group">
-            <a href="#" class="button" id="search-btn">Search</a>
-            <a href="addMember.html" class="button">Add Member</a>
-        </div>
-            </div>
-        </section>
-        <section class="results hidden" id="search-results-container">
-            <h3>Results for <span id="search-criteria-display"></span></h3>
-        <div id="search-results-display">
-        </div>
-        </section>
-    </main>
-    <footer class="footer">
-        <p>&copy; 2024 Teams Synchronizer. All rights reserved.</p>
-    </footer>
+    </section>
+    <section class="results hidden" id="search-results-container">
+        <h3>Results for <span id="search-criteria-display"></span></h3>
+        <div id="search-results-display"></div>
+    </section>
+</main>
+<footer class="footer">
+    &copy; 2024 Teams Synchronizer. All rights reserved.
+</footer>
 </body>
-
 
 </html>
