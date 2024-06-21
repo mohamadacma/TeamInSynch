@@ -7,33 +7,32 @@
     --error-color: #EE3A23;
     --input-bg-color: #f7f7f7;
     --input-text-color: #333;
+    --input-bg-color: #FAFAFA;
     --button-text-color: #ffffff;
     --button-hover-bg-color: #0F72CC;
     --button-hover-text-color: #ffffff;
-    --button-bg-color: #1E90FF;
+     --button-bg-color: #1E90FF;
     --font-family: 'Arial', sans-serif;
     --header-font-family: 'Helvetica Neue', Helvetica, sans-serif;
     --logo-font-size: 24px;
     --header-font-size: 36px;
-    --footer-bg-color: #222;
+    --footer-bg-color: #1E1E1E;
     --footer-text-color: #FFF1E6;
-    --card-bg-color: #FFFFFF;
-    --form-bg-color: rgba(255, 255, 255, 0.9);
-}
 
+}
 body {
     margin: 0;
     font-family: var(--font-family);
+    align-items: center;
     background-color: var(--secondary-color);
     color: var(--primary-color);
+
 }
 
 .background {
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    background-color: var(--secondary-color);
+    margin: 0;
+    counter-reset: section;
 }
 
 .header {
@@ -57,7 +56,6 @@ body {
     font-size: var(--logo-font-size);
     margin: 0;
 }
-
 .nav {
     display: flex;
     gap: 10px;
@@ -72,142 +70,53 @@ body {
 .nav-link:hover {
     color: var(--tertiary-color);
 }
-
-.container {
+.nav .user-info-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-grow: 1;
 }
 
-.card {
-    background-color: var(--form-bg-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
-    max-width: 500px;
-    width: 100%;
-    margin: 20px;
-}
-
-.card h2 {
-    font-family: var(--header-font-family);
-    font-size: var(--header-font-size);
-    margin-bottom: 20px;
-    text-align: center;
-    color: var(--primary-color);
-}
-
-.card-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-field {
-    margin-bottom: 15px;
-}
-
-.form-field label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-    color: var(--primary-color);
-}
-
-.form-field input,
-.form-field textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--input-border-color);
-    border-radius: 4px;
-    background-color: var(--input-bg-color);
-    color: var(--input-text-color);
-    font-size: 16px;
-}
-
-.form-field input:focus,
-.form-field textarea:focus {
-    border-color: var(--input-focus-border-color);
-    outline: none;
-}
-
-.button {
-    background-color: var(--button-bg-color);
-    color: var(--button-text-color);
-    padding: 10px 20px;
+.nav .user-info-container .button-logout,
+.nav .user-info-container .button-login {
+    background: none;
     border: none;
-    border-radius: 4px;
+    color: #fff;
     cursor: pointer;
-    font-weight: bold;
+    padding: 0;
     font-size: 16px;
-    transition: background-color 0.3s;
-    width: 150px;
-    text-align: center;
-    text-decoration: none;
+    margin-left: 10px;
 }
 
-.button:hover {
-    background-color: var(--button-hover-bg-color);
-    color: var(--button-hover-text-color);
+.nav .user-info-container .button-logout:hover,
+.nav .user-info-container .button-login:hover {
+    text-decoration: underline;
+}
+.button-logout {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+    font-size: 16px;
 }
 
-.footer {
-    background-color: var(--footer-bg-color);
-    color: var(--footer-text-color);
-    padding: 20px;
-    text-align: center;
-    font-size: 14px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+.button-logout:hover {
+    text-decoration: underline;
 }
 
-.hidden {
-    display: none;
-}
-
-.error {
-    color: var(--error-color);
-    border: 1px solid var(--error-color);
-    padding: 8px;
-    margin-bottom: 15px;
-    border-radius: 4px;
-}
 
 .hero {
+    background: linear-gradient(to right, #333, #1E90FF);
+    color: var(--secondary-color);
+    padding: 80px 20px;
     text-align: center;
-    color: var(--primary-color);
-    padding: 50px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    width: 99%;
 
+}
 .hero-content {
     max-width: 600px;
-    width: 100%;
     margin: 0 auto;
-}
 
-.info-section {
-    background-color: var(--secondary-color);
-    padding: 50px 20px;
-    text-align: center;
-    color: var(--primary-color);
 }
-
-.info-section h3 {
-    font-family: var(--header-font-family);
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.info-section p {
-    font-size: 18px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
 h2 {
     font-family: var(--header-font-family);
     font-size: var(--header-font-size);
@@ -220,22 +129,27 @@ h2 {
     gap: 10px;
     margin-bottom: 10px;
 }
-
-.search-form .form-field {
-    display: flex;
-    justify-content: center;
-}
-
-.search-form .form-field input {
-    width: 80%;
-    padding: 10px;
-    font-size: 16px;
-}
-
 .button-group {
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+.user-info-container {
+    display: flex;
+    align-items: center;
+}
+.button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.button:hover {
+    background-color: var(--button-hover-bg-color);
+    color: var(--button-hover-text-color);
 }
 
 .results {
@@ -245,4 +159,134 @@ h2 {
     background-color: var(--secondary-color);
     border: 1px solid var(--input-border-color);
     border-radius: 4px;
+}
+.footer {
+    background-color: var(--footer-bg-color);
+    color: var(--footer-text-color);
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.header_home {
+    font-size: 36px;
+    line-height: 40px;
+    height: 100px;
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+.card {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 20px;
+    max-width: 800px;
+    width: 100%;
+    padding: 10px 20px;
+}
+.news-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.news-item h3 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: var(--tertiary-color);
+}
+
+.news-item p, .news-item a {
+    margin: 5px 0;
+}
+
+.news-item img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+    .news-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+.error {
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+.validated-field:invalid {
+    outline: 2px solid var(--error-color);
+}
+.validated-field:focus:invalid {
+    color: var(--error-color);
+}
+
+.card-content {
+    max-width: 500px;
+}
+
+.card-content .form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+Flexbox on a lists removes the numbers. We use a counter here to add them back.
+https://stackoverflow.com/a/34316093
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters
+*/
+
+.hidden {
+    display: none;
+}
+
+/* table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+
+}
+
+th {
+    background-color: var(--tertiary-color);
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+table, th, td {
+    border: none;
+    }
+
+a {
+    color: var(--tertiary-color);
+    text-decoration: none;
 }

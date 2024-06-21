@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html>
 
 <head>
     <script type="text/javascript" src="assets/addMember.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Add Member - Teams Synchronizer</title>
+    <title>Add Member</title>
 </head>
 
 <body class="background">
-<header class="header" id="header">
-    <div class="header-container">
-        <div class="logo">Teams Synchronizer</div>
-        <nav class="nav">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-            <button class="button-logout">Logout</button>
-        </nav>
-    </div>
-</header>
-<div class="container">
+    <header class="header" id="header">
+        <div class="header-container">
+            <div class="logo">Teams Synchronizer</div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <button class="button-logout">Logout</button>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
     <div class="card">
         <h2>Add Member</h2>
         <form class="card-content" id="add-member-form">
-            <p class="hidden error" id="error-message"></p>
+            <p class="hidden error" id="error-message"> </p>
             <p class="form-field">
                 <label>Member Name</label>
-                <input type="text" required class="validated-field" id="member-name" placeholder="Amy Adams" autofocus>
+                <input type="text" required class="validated-field" id="member-name" placeholder="Amy Adams"
+                    autofocus>
             </p>
             <p class="form-field">
                 <label>Join Date</label>
@@ -51,18 +51,18 @@
             <p class="form-field">
                 <label>Member Email</label>
                 <input type="email" required class="validated-field" id="member-email" placeholder="email@example.com">
-            </p>
+            <p>
             <p class="form-field">
                 <label>Team Name</label>
                 <input type="text" required class="validated-field" id="team-name" placeholder="Alpha">
             </p>
-            <button type="submit" class="button" id="save-btn">Save Member</button>
+                <button type="submit" class="button" id="save-btn">Save Member</button>
         </form>
     </div>
-</div>
-<footer class="footer">
-    &copy; 2024 Teams Synchronizer. All rights reserved.
-</footer>
+    </div>
+    <footer class="footer">
+        &copy; 2024 Teams Synchronizer. All rights reserved.
+    </footer>
 </body>
 
 </html>
