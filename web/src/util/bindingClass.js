@@ -1,4 +1,5 @@
 export default class BindingClass {
+
     /**
      * Binds all of the methods to "this" object. These methods will now have the state of the instance object.
      * @param methods The name of each method to bind.
