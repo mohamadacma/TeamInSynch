@@ -48,6 +48,7 @@ export default class Header extends BindingClass {
         userInfo.classList.add('user-info');
         if (currentUser) {
                     const firstName = currentUser.name.split(' ')[0];
+                    console.log(firstName);
                     userInfo.setAttribute('data-username', firstName);
                     const logoutButton = this.createLogoutButton(firstName);
                     userInfo.appendChild(logoutButton);
@@ -65,8 +66,7 @@ export default class Header extends BindingClass {
 
     createLogoutButton(firstName) {
         return this.createButton(`Logout: ${firstName}`, this.client.logout);
-                button.classList.add('logout-btn');
-                return button;
+
 
     }
 
