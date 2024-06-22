@@ -7,7 +7,6 @@
     --error-color: #EE3A23;
     --input-bg-color: #f7f7f7;
     --input-text-color: #333;
-    --input-bg-color: #FAFAFA;
     --button-text-color: #ffffff;
     --button-hover-bg-color: #0F72CC;
     --button-hover-text-color: #ffffff;
@@ -18,21 +17,24 @@
     --header-font-size: 36px;
     --footer-bg-color: #1E1E1E;
     --footer-text-color: #FFF1E6;
+    --card-bg-color: #FFFFFF;
+    --form-bg-color: rgba(255, 255, 255, 0.9);
 
 }
 body {
     margin: 0;
     font-family: var(--font-family);
-    align-items: center;
     background-color: var(--secondary-color);
     color: var(--primary-color);
 
 }
 
 .background {
-    background-color: var(--secondary-color);
-    margin: 0;
-    counter-reset: section;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 }
 
 .header {
@@ -142,10 +144,15 @@ h2 {
     background-color: var(--button-bg-color);
     color: var(--button-text-color);
     padding: 10px 20px;
+    border: none;
     border-radius: 4px;
+
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s;
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
 }
 .button:hover {
     background-color: var(--button-hover-bg-color);
@@ -177,15 +184,18 @@ h2 {
 }
 
 .card {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--form-bg-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    margin: 20px;
-    max-width: 800px;
+    padding: 20px;
+    max-width: 500px;
     width: 100%;
-    padding: 10px 20px;
-}
+    margin: 20px;
+    }
+    .card-content {
+        display: flex;
+        flex-direction: column;
+    }
 .news-item {
     background-color: #f9f9f9;
     padding: 15px;
@@ -241,9 +251,32 @@ h2 {
     max-width: 500px;
 }
 
-.card-content .form-field {
-    display: flex;
-    flex-direction: column;
+.form-field {
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: var(--primary-color);
+}
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg-color);
+    color: var(--input-text-color);
+    font-size: 16px;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    border-color: var(--input-focus-border-color);
+    outline: none;
 }
 
 /*
