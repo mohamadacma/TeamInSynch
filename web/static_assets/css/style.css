@@ -152,6 +152,7 @@ h2 {
     align-items: center;
 }
 .button {
+
     background-color: var(--button-bg-color);
     color: var(--button-text-color);
     padding: 10px 20px;
@@ -164,6 +165,9 @@ h2 {
     width: 150px;
     text-align: center;
     text-decoration: none;
+    font-size: 15px;
+
+
 }
 .button:hover {
     background-color: var(--button-hover-bg-color);
@@ -281,6 +285,10 @@ h2 {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+}
+.form-field textarea {
+    resize: vertical;
+    height: 100px;
 }
 
 .form-field input:focus,
