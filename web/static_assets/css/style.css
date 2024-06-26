@@ -48,11 +48,7 @@ body {
     align-items: center;
     font-family: var(--header-font-family);
 }
-.main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
+
 
 .header-container {
     display: flex;
@@ -212,6 +208,8 @@ h2 {
         display: flex;
         flex-direction: column;
     }
+
+
 .news-item {
     background-color: #f9f9f9;
     padding: 15px;

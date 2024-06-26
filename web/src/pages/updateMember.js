@@ -121,6 +121,9 @@
                  errorMessageDisplay.innerText = `Error: ${error.message}`;
                  errorMessageDisplay.classList.remove('hidden');
             }
+             if (member != null) {
+                        window.location.href = `/index.html`;
+                    }
         }
     }
          /**

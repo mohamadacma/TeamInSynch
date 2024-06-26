@@ -28,7 +28,11 @@ export default class Header extends BindingClass {
         const header = document.getElementById('header');
         header.appendChild(siteTitle);
         const userInfoContainer = document.querySelector('.user-info-container');
-        userInfoContainer.appendChild(userInfo);
+         if (userInfoContainer) {
+                    userInfoContainer.appendChild(userInfo);
+                } else {
+                    console.error('User info container not found');
+                }
     }
 
     createSiteTitle() {

@@ -98,6 +98,7 @@ class SearchMembers extends BindingClass {
         }
     }
 
+
     /**
      * Pulls search results from the datastore and displays them on the html page.
      */
