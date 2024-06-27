@@ -27,8 +27,9 @@ body {
     font-family: var(--font-family);
     background-color: var(--secondary-color);
     color: var(--primary-color);
-
-
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .background {
@@ -178,13 +179,6 @@ h2 {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-}
-.footer {
-    background-color: var(--footer-bg-color);
-    color: var(--footer-text-color);
-    padding: 20px;
-    text-align: center;
-    width: 100%;
 }
 
 .header_home {
@@ -358,4 +352,34 @@ a {
 
 .select-action:hover {
     background-color: var(--button-hover-bg-color);
+}
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ff7e5f;
+    background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+    z-index: -1;
+}
+
+.logo {
+    transition: transform 0.6s ease;
+}
+
+.logo:hover {
+    transform: rotate(360deg);
+}
+
+#dynamicHeading {
+    transition: opacity 0.5s ease;
+}
+main {
+    flex: 1;
+}
+
+footer {
+    background-color: #1E1E1E;
+    color: #FFF1E6;
+    padding: 20px;
+    text-align: center;
 }

@@ -1,51 +1,88 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams Synchronizer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script type="text/javascript" src="assets/searchMembers.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+<body>
+<div id="particles-js"></div>
 
-<body class="background">
-    <header class="header" id="header">
-        <div class="header-container">
-            <h1 class="logo">Teams Synchronizer</h1>
-            <nav class="nav">
-                <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link">About</a>
-                <a href="#" class="nav-link">Contact</a>
-                <div class="user-info-container"></div>
-            </nav>
-        </div>
-    </header>
+<header class="header" id="header">
+    <div class="header-container">
+        <h1 class="logo" id="animatedLogo">Teams Synchronizer</h1>
+        <nav class="nav">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Contact</a>
+            <div class="user-info-container"></div>
+        </nav>
+    </div>
+</header>
 
-    <main class="main-content">
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Connect with your team</h2>
-                <form class="search-form" id="search-members-form">
-                    <p class="form-field">
-
-                    <input type="text" class="validated-field" id="search-criteria" placeholder="search your teams" autofocus>
-
-            </p>
-        </form>
-        <div class="button-group">
-            <a href="#" class="button" id="search-btn">Search</a>
-            <a href="addMember.html" class="button">Add Member</a>
-        </div>
+<main class="main-content">
+    <section class="hero">
+        <div class="hero-content">
+            <h2 id="dynamicHeading">Connect with your team</h2>
+            <form class="search-form" id="search-members-form">
+                <div class="form-field">
+                    <input type="text" class="validated-field" id="search-criteria" placeholder="Search your teams" autofocus>
+                </div>
+            </form>
+            <div class="button-group">
+                <a href="#" class="button" id="search-btn">Search</a>
+                <a href="addMember.html" class="button">Add Member</a>
             </div>
-        </section>
-        <section class="results hidden" id="search-results-container">
-            <h3>Results for <span id="search-criteria-display"></span></h3>
-        <div id="search-results-display">
         </div>
-        </section>
-    </main>
-    <footer class="footer">
-        <p>&copy; 2024 Teams Synchronizer. All rights reserved.</p>
-    </footer>
+    </section>
+    <section class="results hidden" id="search-results-container">
+        <h3>Results for <span id="search-criteria-display"></span></h3>
+        <div id="search-results-display"></div>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2024 Teams Synchronizer. All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    // Particle.js configuration
+    particlesJS('particles-js', {
+        particles: {
+            number: { value: 80 },
+            color: { value: '#ffffff' },
+            shape: { type: 'circle' },
+            opacity: { value: 0.5, random: true },
+            size: { value: 3, random: true },
+            move: { enable: true, speed: 6 }
+        }
+    });
+
+    // Animated logo
+    const logo = document.getElementById('animatedLogo');
+    logo.addEventListener('mouseover', () => {
+        gsap.to(logo, { rotation: 360, duration: 1 });
+    });
+
+    // Dynamic heading
+    const headings = ['Connect with your team', 'Synchronize your efforts', 'Achieve together'];
+    let currentHeading = 0;
+    setInterval(() => {
+        currentHeading = (currentHeading + 1) % headings.length;
+        gsap.to('#dynamicHeading', {
+            opacity: 0,
+            onComplete: function() {
+                document.getElementById('dynamicHeading').textContent = headings[currentHeading];
+                gsap.to('#dynamicHeading', { opacity: 1 });
+            }
+        });
+    }, 5000);
+</script>
 </body>
-
-
 </html>
