@@ -27,8 +27,9 @@ body {
     font-family: var(--font-family);
     background-color: var(--secondary-color);
     color: var(--primary-color);
-
-
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .background {
@@ -178,13 +179,6 @@ h2 {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-}
-.footer {
-    background-color: var(--footer-bg-color);
-    color: var(--footer-text-color);
-    padding: 20px;
-    text-align: center;
-    width: 100%;
 }
 
 .header_home {
@@ -352,8 +346,11 @@ a {
 
 .select-action:hover {
     background-color: var(--button-hover-bg-color);
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> bbd700de30d8ea54efcb3b9039580e9cd3f8921e
 }
 #particles-js {
     position: absolute;
@@ -363,6 +360,7 @@ a {
     background-image: linear-gradient(to right, #ff7e5f, #feb47b);
     z-index: -1;
 }
+<<<<<<< HEAD
 .weather-icon {
    font-size: 80px;
        margin-bottom: 20px;
@@ -396,6 +394,8 @@ a {
     margin: 20px auto;
     text-align: center;
 }
+=======
+>>>>>>> bbd700de30d8ea54efcb3b9039580e9cd3f8921e
 
 .logo {
     transition: transform 0.6s ease;
@@ -417,5 +417,8 @@ footer {
     color: #FFF1E6;
     padding: 20px;
     text-align: center;
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> bbd700de30d8ea54efcb3b9039580e9cd3f8921e
 }
