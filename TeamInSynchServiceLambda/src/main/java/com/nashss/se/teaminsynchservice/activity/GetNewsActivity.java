@@ -80,7 +80,7 @@ public class GetNewsActivity {
        //retrieve apiKey using secret manager
         String apiKey = APIUtils.getSecret();
         // Build location filter
-        String locationFilter = String.format("?location-filter=%f,%f,10",
+        String locationFilter = String.format("?location-filter=%f,%f,20",
                 geoCodingResult.getLatitude(),
                 geoCodingResult.getLongitude());
 
