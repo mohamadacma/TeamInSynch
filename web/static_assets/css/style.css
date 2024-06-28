@@ -295,12 +295,6 @@ h2 {
     outline: none;
 }
 
-/*
-Flexbox on a lists removes the numbers. We use a counter here to add them back.
-https://stackoverflow.com/a/34316093
-https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters
-*/
-
 .hidden {
     display: none;
 }
@@ -358,4 +352,70 @@ a {
 
 .select-action:hover {
     background-color: var(--button-hover-bg-color);
+<<<<<<< Updated upstream
+=======
+}
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ff7e5f;
+    background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+    z-index: -1;
+}
+.weather-icon {
+   font-size: 80px;
+       margin-bottom: 20px;
+       color: var(--tertiary-color);
+}
+
+.weather-icon-animate {
+    animation: weatherIconAnimate 1s infinite alternate;
+}
+
+.weather-details p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+.weather-details i {
+    margin-right: 10px;
+    color: var(--tertiary-color);
+}
+
+@keyframes weatherIconAnimate {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+.weather-card {
+    background-color: var(--form-bg-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.logo {
+    transition: transform 0.6s ease;
+}
+
+.logo:hover {
+    transform: rotate(360deg);
+}
+
+#dynamicHeading {
+    transition: opacity 0.5s ease;
+}
+main {
+    flex: 1;
+}
+
+footer {
+    background-color: #1E1E1E;
+    color: #FFF1E6;
+    padding: 20px;
+    text-align: center;
+>>>>>>> Stashed changes
 }

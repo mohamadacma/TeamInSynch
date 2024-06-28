@@ -3,20 +3,32 @@
 <head>
     <script type="text/javascript" src="assets/weather.js" ></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Results</title>
 </head>
 <body class="background">
-<header class="header" id="header"></header>
-<main class="main-content">
-    <section class="hero">
-        <div class="hero-content card">
+<header class="header" id="header">
+    <div class="header-container">
+        <div class="logo">Teams Synchronizer</div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <div class="user-info-container"></div>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="weather-card">
             <h2>Weather Results</h2>
-            <div id="weather-results-container"></div>
+        <div id="weather-results-container" class="weather-content">
+            <div class="weather-icon"></div>
+            <div class="weather-details"></div>
         </div>
-    </section>
-</main>
+    </div>
+</div>
 <footer class="footer">
     <p>&copy; 2024 Teams Synchronizer. All rights reserved.</p>
 </footer>
