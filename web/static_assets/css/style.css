@@ -274,16 +274,6 @@ h2 {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 20px;
     }
-     .header {
-        flex-direction: column;
-      }
-      .nav {
-        margin-top: 10px;
-      }
-      .button-group {
-        flex-direction: column;
-      }
-    }
 
 
 .error {
