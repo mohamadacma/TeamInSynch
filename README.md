@@ -21,8 +21,6 @@ To access TeamSynchronizer:
 
 ## Usage
 
-## Usage
-
 TeamSynchronizer is a web-based application designed to help team managers better understand and connect with their geographically dispersed team members. Here's how to use the main features:
 
 1. **Login:**
